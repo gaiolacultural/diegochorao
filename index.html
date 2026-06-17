@@ -9,48 +9,42 @@
 </head>
 <body>
     <div class="main-container">
-        <!-- Container que trava a proporção da imagem perfeitamente -->
-        <div class="image-wrapper">
-            <!-- Imagem de Fundo (com ?v=2 para burlar o cache) -->
-            <img src="fundo.jpg?v=2" alt="Diego Chorão no Boteco" class="bg-image">
-
-            <!-- Luminoso -->
-            <div class="luminoso-container">
-                <img src="luminoso.jpg.jpg?v=2" alt="Luminoso" class="luminoso">
-            </div>
-
-            <!-- Flyers na parede esquerda -->
-            <div class="flyers-container">
-                <img src="flyer1.jpg.jpg" alt="Flyer 1" class="flyer-item">
-                <img src="flyer2.jpg.jpg" alt="Flyer 2" class="flyer-item">
-                <img src="flyer3.jpg.jpg" alt="Flyer 3" class="flyer-item">
-                <img src="flyer4.jpg.jpg" alt="Flyer 4" class="flyer-item">
-                <img src="flyer5.jpg.jpg" alt="Flyer 5" class="flyer-item">
-            </div>
-
-            <!-- Cronômetro (Sem correntes, encaixado na janela direita) -->
-            <div class="hanging-countdown">
-                <div class="countdown-container">
-                    <div id="countdown">
-                        <div class="time-box">
-                            <div id="days" class="time-value"></div>
-                            <small>Dias</small>
-                        </div>
-                        <div class="time-box">
-                            <div id="hours" class="time-value"></div>
-                            <small>Horas</small>
-                        </div>
-                        <div class="time-box">
-                            <div id="minutes" class="time-value"></div>
-                            <small>Min</small>
-                        </div>
-                        <div class="time-box">
-                            <div id="seconds" class="time-value"></div>
-                            <small>Seg</small>
-                        </div>
-                    </div>
-                    <div class="launch-date">27 DE JUNHO</div>
+        <!-- Bottle Container -->
+        <div class="bottle-wrapper">
+            <div class="bottle">
+                <div class="bottle-cap"></div>
+                <div class="bottle-neck"></div>
+                <div class="bottle-shoulder"></div>
+                <div class="bottle-body">
+                    <div class="glass-reflection"></div>
+                    <img src="rotulo.png.png?v=2" alt="Rótulo Diego Chorão" class="bottle-label">
                 </div>
+                <div class="bottle-base"></div>
+            </div>
+        </div>
+
+        <!-- Cronômetro centralizado -->
+        <div class="hanging-countdown center-bottom">
+            <div class="countdown-container">
+                <div id="countdown">
+                    <div class="time-box">
+                        <div id="days" class="time-value"></div>
+                        <small>Dias</small>
+                    </div>
+                    <div class="time-box">
+                        <div id="hours" class="time-value"></div>
+                        <small>Horas</small>
+                    </div>
+                    <div class="time-box">
+                        <div id="minutes" class="time-value"></div>
+                        <small>Min</small>
+                    </div>
+                    <div class="time-box">
+                        <div id="seconds" class="time-value"></div>
+                        <small>Seg</small>
+                    </div>
+                </div>
+                <div class="launch-date">27 DE JUNHO</div>
             </div>
         </div>
     </div>
