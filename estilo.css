@@ -19,8 +19,10 @@ body {
     height: 100vh;
     overflow: hidden;
     background-image: url('fundo-boteco.jpg');
-    background-size: cover;
-    background-position: center 30%; /* Foca um pouco mais para cima no rapaz e na mesa */
+    background-size: contain; /* Contain tira o zoom, mostrando a foto inteira, mas pode deixar barras pretas laterais */
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: #000;
 }
 
 /* Fundo esmaecido leve para dar destaque à garrafa e texto */
@@ -48,29 +50,31 @@ body {
     z-index: 10;
 }
 
-/* O anel de loading giratório removido, mantendo só o container base */
-.loading-ring-container {
-    position: relative;
-    width: 250px; /* Deixei um pouco maior pra ficar no tamanho do seu print */
-    height: 250px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 /* A Imagem da Bolacha (redonda com animação de pizza) */
 .bolacha-image {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%; /* Força a imagem a ficar perfeitamente redonda */
+    width: 115%; /* Dá um leve zoom para tentar cortar as bordas brancas do JPG */
+    height: 115%;
+    border-radius: 50%; 
     object-fit: cover;
     z-index: 2;
+    mix-blend-mode: darken; /* Tenta deixar o fundo branco transparente */
     
     /* Efeito de carregamento "Pizza" ficando transparente */
     -webkit-mask-image: conic-gradient(rgba(0,0,0,1) var(--angle), rgba(0,0,0,0.1) var(--angle));
     mask-image: conic-gradient(rgba(0,0,0,1) var(--angle), rgba(0,0,0,0.1) var(--angle));
     animation: sweep 2s linear infinite;
+}
+
+/* Esconde qualquer sobra que passar do anel */
+.loading-ring-container {
+    position: relative;
+    width: 250px; 
+    height: 250px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Força o corte redondo mesmo com o zoom da imagem */
 }
 
 @keyframes sweep {
