@@ -32,51 +32,50 @@ body {
     z-index: 1;
 }
 
+/* Para a animação da máscara circular estilo pizza funcionar no CSS moderno */
+@property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
 /* Bolacha Wrapper: Posicionado centralizado, acima da mesa */
 .bolacha-wrapper {
     position: absolute;
-    bottom: 35%; /* Fica acima do cronômetro */
+    bottom: 25%; /* Fica um pouco acima do cronômetro, de acordo com o seu print */
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
 }
 
-/* O anel de loading giratório */
+/* O anel de loading giratório removido, mantendo só o container base */
 .loading-ring-container {
     position: relative;
-    width: 220px;
-    height: 220px;
+    width: 250px; /* Deixei um pouco maior pra ficar no tamanho do seu print */
+    height: 250px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Um fundo leve se a imagem não for perfeita */
-    background: rgba(0,0,0,0.5);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
 }
 
-/* O gradiente que fica girando (borda animada com 3 cores) */
-.loading-ring-container::before {
-    content: '';
-    position: absolute;
-    top: -5px; right: -5px; bottom: -5px; left: -5px; /* Expande para fora do container para criar a borda */
-    border-radius: 50%;
-    background: conic-gradient(from 0deg, transparent 0%, transparent 60%, #ffd700 80%, #ff8c00 100%);
-    animation: spin 2s linear infinite;
-    z-index: -1;
-}
-
-@keyframes spin {
-    100% { transform: rotate(360deg); }
-}
-
-/* A Imagem da Bolacha (redonda) */
+/* A Imagem da Bolacha (redonda com animação de pizza) */
 .bolacha-image {
-    width: 210px;
-    height: 210px;
-    border-radius: 50%; /* Força a imagem a ficar perfeitamente redonda e corta fundo branco das bordas */
+    width: 100%;
+    height: 100%;
+    border-radius: 50%; /* Força a imagem a ficar perfeitamente redonda */
     object-fit: cover;
     z-index: 2;
+    
+    /* Efeito de carregamento "Pizza" ficando transparente */
+    -webkit-mask-image: conic-gradient(rgba(0,0,0,1) var(--angle), rgba(0,0,0,0.1) var(--angle));
+    mask-image: conic-gradient(rgba(0,0,0,1) var(--angle), rgba(0,0,0,0.1) var(--angle));
+    animation: sweep 2s linear infinite;
+}
+
+@keyframes sweep {
+    0% { --angle: 0deg; }
+    100% { --angle: 360deg; }
 }
 
 
