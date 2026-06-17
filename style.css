@@ -1,0 +1,185 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #111;
+    color: #fff;
+    overflow: hidden; /* Evitar scroll, focando na imagem */
+}
+
+/* Container principal */
+.main-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Mantém a proporção exata da foto de fundo (~1.5) em qualquer tela! */
+.image-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Cobre toda a tela sem deixar bordas, mantendo a proporção exata da imagem */
+    width: max(100vw, 100vh * 1.5);
+    height: max(100vh, 100vw / 1.5);
+    z-index: 1;
+}
+
+/* Imagem de Fundo */
+.bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Garante que a imagem preencha todo o wrapper sem distorcer */
+    filter: brightness(0.6);
+}
+
+/* Base dos flyers */
+.flyer {
+    position: absolute;
+}
+
+/* Luminoso Circular na Lâmpada */
+.luminoso-container {
+    position: absolute;
+    top: 11%; /* Altura da lâmpada no teto */
+    left: 50%; /* Centro do pilar central */
+    transform: translateX(-50%);
+    width: 10%; /* Tamanho para cobrir a área da lâmpada/teto */
+    aspect-ratio: 1/1;
+    z-index: 10;
+}
+
+.luminoso {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%; /* Torna a imagem perfeitamente redonda */
+    object-fit: cover;
+    box-shadow: 0 0 20px 5px rgba(255, 165, 0, 0.6), 0 0 40px 10px rgba(255, 69, 0, 0.4);
+    animation: neonGlow 2s infinite alternate;
+}
+
+@keyframes neonGlow {
+    from {
+        box-shadow: 0 0 15px 3px rgba(255, 165, 0, 0.5), 0 0 30px 8px rgba(255, 69, 0, 0.3);
+    }
+    to {
+        box-shadow: 0 0 25px 8px rgba(255, 165, 0, 0.9), 0 0 50px 15px rgba(255, 69, 0, 0.7), inset 0 0 15px rgba(255, 255, 255, 0.5);
+    }
+}
+
+/* Container dos 5 Flyers Empilhados na Esquerda */
+.flyers-container {
+    position: absolute;
+    top: 22%; /* Início da pilha na parede esquerda */
+    left: 17.5%; /* Pilar ou parede esquerda */
+    transform: translateX(-50%);
+    width: 8%; /* Largura dos flyers na coluna */
+    display: flex;
+    flex-direction: column;
+    gap: 3px; /* Espaço pequeno entre um flyer e outro */
+    z-index: 5;
+}
+
+.flyer-item {
+    width: 100%;
+    height: auto;
+    /* Efeitos de Realismo Extremo */
+    opacity: 0.92; 
+    filter: brightness(0.8) contrast(0.9) sepia(0.2) saturate(0.8);
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 1px 1px 3px rgba(0,0,0,0.4);
+    border-radius: 1px;
+}
+
+/* Cronômetro (Encaixado na Janela Direita) */
+.hanging-countdown {
+    position: absolute;
+    top: 25.5%; /* Posição exata dentro da janela direita */
+    left: 82.5%; /* Posição horizontal na janela direita */
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 15;
+    width: 25%; /* Ajusta a largura para caber exatamente no quadro da janela */
+}
+
+/* Quadro do cronômetro direto na janela */
+.countdown-container {
+    background: radial-gradient(circle, #2a2a2a 0%, #111 100%);
+    border: none; /* Sem a moldura de madeira grossa */
+    border-radius: 2px; /* Apenas uma leve curva nas pontas */
+    padding: 10px 15px;
+    text-align: center;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.9);
+    width: 100%;
+}
+
+#countdown {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.time-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1; /* Para distribuir o espaço */
+}
+
+/* Números em estilo Giz Rústico (Palitinhos de boteco) */
+.time-value {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: center;
+    width: 100%;
+    height: 80px; /* Reduzido para encaixar na imagem compacta */
+    overflow: hidden; 
+    
+    color: #f4f4f4; /* Giz branco */
+    background: transparent;
+    border-bottom: 2px dashed rgba(255,255,255,0.2); /* Linha sutil de anotação */
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.time-box small {
+    margin-top: 5px;
+    font-family: 'Caveat', cursive;
+    font-size: 1.4rem;
+    color: #dcdcdc;
+    text-transform: capitalize;
+}
+
+.launch-date {
+    margin-top: 10px;
+    font-family: 'Amatic SC', cursive;
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #f4f4f4;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.5);
+}
+
+/* Responsividade Mínima Opcional */
+@media (max-width: 768px) {
+    .hanging-countdown {
+        width: 60%;
+        top: 30%;
+        left: 70%;
+    }
+}
