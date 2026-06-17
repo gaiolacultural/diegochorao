@@ -8,13 +8,13 @@ function getTallyHTML(num) {
     
     // SVG de 5 palitos (4 em pé e 1 cortando, desenhados "à mão" com curvas)
     const bundleSVG = `
-        <svg viewBox="0 0 40 40" style="width: 25px; height: 25px; margin: 2px;">
+        <svg viewBox="0 0 40 40" style="width: 2.5vh; height: 2.5vh; margin: 0.2vh;">
             <path d="M5,5 Q7,20 4,35 M15,4 Q13,20 16,36 M25,6 Q26,20 24,35 M35,5 Q34,20 36,36 M2,30 Q20,15 38,10" fill="none" stroke="#f4f4f4" stroke-width="3" stroke-linecap="round"/>
         </svg>`;
         
     // SVG de 1 palito solto
     const singleSVG = `
-        <svg viewBox="0 0 10 40" style="width: 6px; height: 25px; margin: 2px;">
+        <svg viewBox="0 0 10 40" style="width: 0.6vh; height: 2.5vh; margin: 0.2vh;">
             <path d="M5,5 Q6,20 4,35" fill="none" stroke="#f4f4f4" stroke-width="3" stroke-linecap="round"/>
         </svg>`;
         
