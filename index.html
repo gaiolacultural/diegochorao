@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Diego Chorão - Poesia de Boteco</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Inter:wght@300;600&family=Amatic+SC:wght@700&family=Caveat:wght@600&display=swap" rel="stylesheet">
     <style>
@@ -27,8 +27,8 @@ body {
     height: 100vh;
     overflow: hidden;
     background-image: url('fundo-boteco.jpg?v=final');
-    background-size: cover; /* Retorna o zoom para cobrir as faixas pretas */
-    background-position: center 30%; /* Foca a câmera entre o rapaz e a mesa */
+    background-size: cover; 
+    background-position: center 15%; /* Desce a imagem um pouco mais para revelar o topo */
     background-repeat: no-repeat;
     background-color: #000;
 }
@@ -76,13 +76,13 @@ body {
 /* Esconde qualquer sobra que passar do anel */
 .loading-ring-container {
     position: relative;
-    width: 250px; 
-    height: 250px;
+    width: 30vh; /* Usa medida relativa baseada na altura da tela */
+    height: 30vh;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden; /* Força o corte redondo mesmo com o zoom da imagem */
+    overflow: hidden; 
 }
 
 @keyframes sweep {
