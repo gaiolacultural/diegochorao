@@ -18,7 +18,7 @@ body {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    background-image: url('fundo.jpg');
+    background-image: url('fundo-boteco.jpg');
     background-size: cover;
     background-position: center bottom; /* Foca na mesa de sinuca (parte de baixo da foto) */
 }
