@@ -20,7 +20,7 @@ body {
     overflow: hidden;
     background-image: url('fundo-boteco.jpg');
     background-size: cover;
-    background-position: center bottom; /* Foca na mesa de sinuca (parte de baixo da foto) */
+    background-position: center 30%; /* Foca um pouco mais para cima no rapaz e na mesa */
 }
 
 /* Fundo esmaecido leve para dar destaque à garrafa e texto */
@@ -32,97 +32,51 @@ body {
     z-index: 1;
 }
 
-/* Bottle Wrapper: Posicionado em cima da mesa de sinuca */
-.bottle-wrapper {
+/* Bolacha Wrapper: Posicionado centralizado, acima da mesa */
+.bolacha-wrapper {
     position: absolute;
-    bottom: 30%; /* Fica mais para baixo, na altura da mesa */
+    bottom: 35%; /* Fica acima do cronômetro */
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
 }
 
-/* A estrutura da Garrafa de Vidro (Âmbar) */
-.bottle {
+/* O anel de loading giratório */
+.loading-ring-container {
     position: relative;
-    width: 160px;
-    height: 500px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* Sombras para dar volume 3D na garrafa inteira e parecer que está na mesa */
-    filter: drop-shadow(0 30px 15px rgba(0,0,0,0.9));
-}
-
-/* Tampa metálica */
-.bottle-cap {
-    width: 44px;
-    height: 15px;
-    background: linear-gradient(to right, #b8860b, #ffd700, #b8860b);
-    border-radius: 3px 3px 1px 1px;
-    margin-bottom: 2px;
-    z-index: 2;
-}
-
-/* Gargalo */
-.bottle-neck {
-    width: 40px;
-    height: 120px;
-    background: linear-gradient(to right, #2a0800 0%, #4a1500 20%, #8c2a00 50%, #4a1500 80%, #2a0800 100%);
-    border-radius: 5px 5px 0 0;
-    z-index: 1;
-}
-
-/* Ombros (Curva da garrafa) */
-.bottle-shoulder {
-    width: 160px;
-    height: 90px;
-    background: linear-gradient(to right, #2a0800 0%, #4a1500 20%, #8c2a00 50%, #4a1500 80%, #2a0800 100%);
-    border-radius: 80px 80px 0 0;
-    margin-top: -10px;
-    z-index: 1;
-}
-
-/* Corpo Principal da Garrafa */
-.bottle-body {
-    position: relative;
-    width: 160px;
-    height: 270px;
-    background: linear-gradient(to right, #2a0800 0%, #4a1500 20%, #8c2a00 50%, #4a1500 80%, #2a0800 100%);
-    z-index: 1;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
+    /* Um fundo leve se a imagem não for perfeita */
+    background: rgba(0,0,0,0.5);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
 }
 
-/* Base da garrafa */
-.bottle-base {
-    width: 160px;
-    height: 20px;
-    background: linear-gradient(to right, #1a0500 0%, #3a1000 20%, #6b2000 50%, #3a1000 80%, #1a0500 100%);
-    border-radius: 0 0 15px 15px;
-    z-index: 1;
-}
-
-/* Reflexo de Vidro que passa pela garrafa inteira (simulação 3D) */
-.glass-reflection {
+/* O gradiente que fica girando (borda animada com 3 cores) */
+.loading-ring-container::before {
+    content: '';
     position: absolute;
-    top: -200px;
-    left: 20px;
-    width: 15px;
-    height: 480px;
-    background: linear-gradient(to bottom, rgba(255,255,255,0.4), rgba(255,255,255,0.05));
-    border-radius: 10px;
-    pointer-events: none;
-    z-index: 3;
+    top: -5px; right: -5px; bottom: -5px; left: -5px; /* Expande para fora do container para criar a borda */
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, transparent 0%, transparent 60%, #ffd700 80%, #ff8c00 100%);
+    animation: spin 2s linear infinite;
+    z-index: -1;
 }
 
-/* O Rótulo - dimensionado para caber no corpo */
-.bottle-label {
-    width: 130px;
-    height: auto;
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
+/* A Imagem da Bolacha (redonda) */
+.bolacha-image {
+    width: 210px;
+    height: 210px;
+    border-radius: 50%; /* Força a imagem a ficar perfeitamente redonda e corta fundo branco das bordas */
+    object-fit: cover;
     z-index: 2;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.6);
 }
 
 
