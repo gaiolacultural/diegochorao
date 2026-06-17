@@ -20,24 +20,24 @@ body {
     overflow: hidden;
     background-image: url('fundo.jpg');
     background-size: cover;
-    background-position: center;
+    background-position: center bottom; /* Foca na mesa de sinuca (parte de baixo da foto) */
 }
 
-/* Fundo esmaecido para dar destaque à garrafa e texto */
+/* Fundo esmaecido leve para dar destaque à garrafa e texto */
 .main-container::after {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.2); /* Deixei mais claro pra ver bem o boteco */
     z-index: 1;
 }
 
-/* Bottle Wrapper: Centered in the middle of the screen */
+/* Bottle Wrapper: Posicionado em cima da mesa de sinuca */
 .bottle-wrapper {
     position: absolute;
-    top: 45%;
+    bottom: 30%; /* Fica mais para baixo, na altura da mesa */
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     z-index: 10;
 }
 
@@ -49,8 +49,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* Sombras para dar volume 3D na garrafa inteira */
-    filter: drop-shadow(0 20px 20px rgba(0,0,0,0.8));
+    /* Sombras para dar volume 3D na garrafa inteira e parecer que está na mesa */
+    filter: drop-shadow(0 30px 15px rgba(0,0,0,0.9));
 }
 
 /* Tampa metálica */
@@ -126,18 +126,18 @@ body {
 }
 
 
-/* Cronômetro (Centro em baixo da garrafa) */
+/* Cronômetro (Centro em baixo da garrafa, literalmente em cima da mesa de sinuca) */
 .center-bottom {
     position: absolute;
-    bottom: 8%; /* Ajustado mais para baixo */
+    bottom: 3%; /* Bem na beirada inferior da mesa */
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     align-items: center;
     z-index: 15;
-    width: 80%;
-    max-width: 600px;
+    width: 90%;
+    max-width: 700px;
 }
 
 /* Quadro do cronômetro direto na janela */
