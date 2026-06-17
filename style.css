@@ -18,7 +18,7 @@ body {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    background-image: url('fundo.jpg?v=2');
+    background-image: url('fundo.jpg');
     background-size: cover;
     background-position: center;
 }
