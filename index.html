@@ -27,8 +27,8 @@ body {
     height: 100vh;
     overflow: hidden;
     background-image: url('fundo-boteco.jpg?v=final');
-    background-size: contain; /* Contain tira o zoom, mostrando a foto inteira, mas pode deixar barras pretas laterais */
-    background-position: center center;
+    background-size: cover; /* Retorna o zoom para cobrir as faixas pretas */
+    background-position: center 30%; /* Foca a câmera entre o rapaz e a mesa */
     background-repeat: no-repeat;
     background-color: #000;
 }
@@ -38,7 +38,7 @@ body {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0, 0, 0, 0.2); /* Deixei mais claro pra ver bem o boteco */
+    background: rgba(0, 0, 0, 0.2); 
     z-index: 1;
 }
 
@@ -52,7 +52,7 @@ body {
 /* Bolacha Wrapper: Posicionado centralizado, acima da mesa */
 .bolacha-wrapper {
     position: absolute;
-    bottom: 25%; /* Fica um pouco acima do cronômetro, de acordo com o seu print */
+    bottom: 25%; 
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
@@ -60,17 +60,17 @@ body {
 
 /* A Imagem da Bolacha (redonda com animação de pizza) */
 .bolacha-image {
-    width: 115%; /* Dá um leve zoom para tentar cortar as bordas brancas do JPG */
+    width: 115%; 
     height: 115%;
     border-radius: 50%; 
     object-fit: cover;
     z-index: 2;
-    mix-blend-mode: darken; /* Tenta deixar o fundo branco transparente */
     
-    /* Efeito de carregamento "Pizza" ficando transparente */
-    -webkit-mask-image: conic-gradient(rgba(0,0,0,1) var(--angle), rgba(0,0,0,0.1) var(--angle));
-    mask-image: conic-gradient(rgba(0,0,0,1) var(--angle), rgba(0,0,0,0.1) var(--angle));
-    animation: sweep 2s linear infinite;
+    /* Efeito de carregamento "Pizza" - Deixado menos transparente (0.4) */
+    -webkit-mask-image: conic-gradient(rgba(0,0,0,1) var(--angle), rgba(0,0,0,0.4) var(--angle));
+    mask-image: conic-gradient(rgba(0,0,0,1) var(--angle), rgba(0,0,0,0.4) var(--angle));
+    /* Diminui a velocidade para 5 segundos */
+    animation: sweep 5s linear infinite;
 }
 
 /* Esconde qualquer sobra que passar do anel */
