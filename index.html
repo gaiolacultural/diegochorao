@@ -28,7 +28,7 @@ body {
     overflow: hidden;
     background-image: url('fundo-boteco.jpg?v=final');
     background-size: cover; 
-    background-position: center 15%; /* Desce a imagem um pouco mais para revelar o topo */
+    background-position: center bottom; /* Foca totalmente na parte de baixo da imagem (mesa) e na cabeça do rapaz */
     background-repeat: no-repeat;
     background-color: #000;
 }
@@ -102,7 +102,7 @@ body {
     align-items: center;
     z-index: 15;
     width: 90%;
-    max-width: 700px;
+    max-width: 65vh; /* Bloqueia o zoom no Desktop baseando na altura */
 }
 
 /* Quadro do cronômetro direto na janela */
@@ -110,16 +110,16 @@ body {
     background: rgba(17, 17, 17, 0.7); /* Fundo semi-transparente para dar destaque */
     backdrop-filter: blur(5px);
     border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 15px; 
-    padding: 15px 30px;
+    border-radius: 1.5vh; 
+    padding: 1.5vh 3vh;
     text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    box-shadow: 0 1vh 3vh rgba(0,0,0,0.8);
     width: 100%;
 }
 
 #countdown {
     display: flex;
-    gap: 15px;
+    gap: 1.5vh;
     justify-content: space-between;
 }
 
@@ -137,48 +137,43 @@ body {
     align-content: flex-start;
     justify-content: center;
     width: 100%;
-    height: 70px;
+    height: 6vh; /* Bloqueia zoom vertical */
     overflow: hidden; 
     
     color: #f4f4f4; /* Giz branco */
     background: transparent;
     border-bottom: 2px dashed rgba(255,255,255,0.2); /* Linha sutil de anotação */
-    padding: 5px;
-    margin-bottom: 5px;
+    padding: 0.5vh;
+    margin-bottom: 0.5vh;
 }
 
 .time-box small {
-    margin-top: 5px;
+    margin-top: 0.5vh;
     font-family: 'Caveat', cursive;
-    font-size: 1.4rem;
+    font-size: 2.2vh; /* Bloqueia zoom da fonte usando VH */
     color: #dcdcdc;
     text-transform: capitalize;
 }
 
 .launch-date {
-    margin-top: 15px;
+    margin-top: 1.5vh;
     font-family: 'Amatic SC', cursive;
-    font-size: 2.8rem;
+    font-size: 4vh; /* Bloqueia zoom da fonte usando VH */
     font-weight: bold;
     color: #f4f4f4;
     letter-spacing: 3px;
-    text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.5);
+    text-shadow: 0.2vh 0.2vh 0.6vh rgba(255, 255, 255, 0.5);
 }
 
 /* Responsividade Mínima Opcional */
 @media (max-width: 768px) {
-    .bottle {
-        transform: scale(0.8);
-    }
     .center-bottom {
         bottom: 5%;
         width: 95%;
+        max-width: 90vw; /* Usa a largura da tela em celulares por serem estreitos */
     }
     .time-value {
-        height: 60px;
-    }
-    .launch-date {
-        font-size: 2.2rem;
+        height: 6vh;
     }
 }
     </style>
