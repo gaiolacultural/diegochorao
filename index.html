@@ -26,9 +26,9 @@ body {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    background-image: url('fundo-boteco.jpg?v=final2');
+    background-image: url('fundo-boteco.jpg?v=final3');
     background-size: cover; 
-    background-position: center 60%; /* Sobe a imagem um pouco mais para a posição quase ideal */
+    background-position: center 50%; /* Sobe a imagem mais para o centro */
     background-repeat: no-repeat;
     background-color: #000;
 }
@@ -137,11 +137,11 @@ body {
     align-content: flex-start;
     justify-content: center;
     width: 100%;
-    min-height: 6vh; /* Permite que o container cresça se tiver muitos palitinhos */
+    height: 8.5vh; /* Altura fixa garantida para caber até 59 segundos sem pular a tela */
     
     color: #f4f4f4; /* Giz branco */
     background: transparent;
-    border-bottom: 2px dashed rgba(255,255,255,0.2); /* Linha sutil de anotação */
+    border-bottom: 0.2vh dashed rgba(255,255,255,0.2); /* Linha sutil de anotação travada contra zoom */
     padding: 0.5vh;
     margin-bottom: 0.5vh;
 }
