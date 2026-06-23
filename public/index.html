@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Diego Chorão - Poesia de Boteco</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Inter:wght@300;600&family=Amatic+SC:wght@700&family=Caveat:wght@600&display=swap" rel="stylesheet">
+    <style>
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #111;
+    color: #fff;
+    overflow: hidden; /* Evitar scroll, focando na imagem */
+}
+
+/* Container principal */
+.main-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-image: url('fundo-boteco.jpg?v=final3');
+    background-size: cover; 
+    background-position: center 50%; /* Sobe a imagem mais para o centro */
+    background-repeat: no-repeat;
+    background-color: #000;
+}
+
+/* Fundo esmaecido leve para dar destaque à garrafa e texto */
+.main-container::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.2); 
+    z-index: 1;
+}
+
+/* Para a animação da máscara circular estilo pizza funcionar no CSS moderno */
+@property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
+/* Bolacha Wrapper: Posicionado centralizado, acima da mesa */
+.bolacha-wrapper {
+    position: absolute;
+    bottom: 35%; /* Subindo mais a bolacha */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+/* A Imagem da Bolacha (redonda com animação de pizza) */
+.bolacha-image {
+    width: 102%; /* Reduzido de 115% para 102% para parar de comer as letras na beirada */
+    height: 102%;
+    border-radius: 50%; 
+    object-fit: cover;
+    z-index: 2;
+    
+    /* Efeito de carregamento "Pizza" - Deixado menos transparente (0.4) */
+    -webkit-mask-image: conic-gradient(rgba(0,0,0,1) var(--angle), rgba(0,0,0,0.4) var(--angle));
+    mask-image: conic-gradient(rgba(0,0,0,1) var(--angle), rgba(0,0,0,0.4) var(--angle));
+    /* Diminui a velocidade para 5 segundos */
+    animation: sweep 5s linear infinite;
+}
+
+/* Esconde qualquer sobra que passar do anel */
+.loading-ring-container {
+    position: relative;
+    width: 35vh; /* Diminuindo um pouco o tamanho da bolacha */
+    height: 35vh;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; 
+}
+
+@keyframes sweep {
+    0% { --angle: 0deg; }
+    100% { --angle: 360deg; }
+}
+
+
+/* Cronômetro (Centro em baixo da garrafa, literalmente em cima da mesa de sinuca) */
+.center-bottom {
+    position: absolute;
+    bottom: 3%; /* Bem na beirada inferior da mesa */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 15;
+    width: 90%;
+    max-width: 65vh; /* Bloqueia o zoom no Desktop baseando na altura */
+}
+
+/* Quadro do cronômetro direto na janela */
+.countdown-container {
+    background: rgba(17, 17, 17, 0.7); /* Fundo semi-transparente para dar destaque */
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 1.5vh; 
+    padding: 1.5vh 3vh;
+    text-align: center;
+    box-shadow: 0 1vh 3vh rgba(0,0,0,0.8);
+    width: 100%;
+}
+
+#countdown {
+    display: flex;
+    gap: 1.5vh;
+    justify-content: space-between;
+}
+
+.time-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1; /* Para distribuir o espaço */
+}
+
+/* Números em estilo Giz Rústico (Palitinhos de boteco) */
+.time-value {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: center;
+    width: 100%;
+    height: 8.5vh; /* Altura fixa garantida para caber até 59 segundos sem pular a tela */
+    
+    color: #f4f4f4; /* Giz branco */
+    background: transparent;
+    border-bottom: 0.2vh dashed rgba(255,255,255,0.2); /* Linha sutil de anotação travada contra zoom */
+    padding: 0.5vh;
+    margin-bottom: 0.5vh;
+}
+
+.time-box small {
+    margin-top: 0.5vh;
+    font-family: 'Caveat', cursive;
+    font-size: 2.2vh; /* Bloqueia zoom da fonte usando VH */
+    color: #dcdcdc;
+    text-transform: capitalize;
+}
+
+.launch-date {
+    margin-top: 1.5vh;
+    font-family: 'Amatic SC', cursive;
+    font-size: 4vh; /* Bloqueia zoom da fonte usando VH */
+    font-weight: bold;
+    color: #f4f4f4;
+    letter-spacing: 0.3vh; /* Troca px por vh para blindar de vez */
+    text-shadow: 0.2vh 0.2vh 0.6vh rgba(255, 255, 255, 0.5);
+}
+
+/* Responsividade Mínima Opcional */
+@media (max-width: 768px) {
+    .center-bottom {
+        bottom: 5%;
+        width: 95%;
+        max-width: 95vw; /* Usa a largura da tela em celulares por serem estreitos */
+    }
+    .time-value {
+        height: 13vh; /* Celular é estreito, os palitos quebram em 4 linhas, exige caixa mais alta */
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Bolacha Container -->
+        <div class="bolacha-wrapper">
+            <div class="loading-ring-container">
+                <img src="bolacha-oficial.jpg?v=final" alt="Bolacha Diego Chorão" class="bolacha-image">
+            </div>
+        </div>
+
+        <!-- Cronômetro centralizado -->
+        <div class="hanging-countdown center-bottom">
+            <div class="countdown-container">
+                <div id="countdown">
+                    <div class="time-box">
+                        <div id="days" class="time-value"></div>
+                        <small>Dias</small>
+                    </div>
+                    <div class="time-box">
+                        <div id="hours" class="time-value"></div>
+                        <small>Horas</small>
+                    </div>
+                    <div class="time-box">
+                        <div id="minutes" class="time-value"></div>
+                        <small>Min</small>
+                    </div>
+                    <div class="time-box">
+                        <div id="seconds" class="time-value"></div>
+                        <small>Seg</small>
+                    </div>
+                </div>
+                <div class="launch-date">27 DE JUNHO</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+const targetDate = new Date("2026-06-27T12:00:00-03:00").getTime();
+
+// Função que converte um número em marcações de "palitinho" (Tally Marks)
+function getTallyHTML(num) {
+    const bundles = Math.floor(num / 5);
+    const singles = num % 5;
+    let html = '';
+    
+    // SVG de 5 palitos blindado com VH para evitar zoom com cache
+    const bundleSVG = `
+        <svg viewBox="0 0 40 40" style="width: 2.2vh; height: 2.2vh; margin: 0.2vh;">
+            <path d="M5,5 Q7,20 4,35 M15,4 Q13,20 16,36 M25,6 Q26,20 24,35 M35,5 Q34,20 36,36 M2,30 Q20,15 38,10" fill="none" stroke="#f4f4f4" stroke-width="3" stroke-linecap="round"/>
+        </svg>`;
+        
+    // SVG de 1 palito solto blindado
+    const singleSVG = `
+        <svg viewBox="0 0 10 40" style="width: 0.5vh; height: 2.2vh; margin: 0.2vh;">
+            <path d="M5,5 Q6,20 4,35" fill="none" stroke="#f4f4f4" stroke-width="3" stroke-linecap="round"/>
+        </svg>`;
+        
+    for (let i = 0; i < bundles; i++) html += bundleSVG;
+    for (let i = 0; i < singles; i++) html += singleSVG;
+    
+    return html;
+}
+
+function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    if (distance < 0) {
+        document.getElementById("countdown").innerHTML = "<h2>O ÁLBUM ESTÁ DISPONÍVEL!</h2>";
+        return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("days").innerHTML = getTallyHTML(days);
+    document.getElementById("hours").innerHTML = getTallyHTML(hours);
+    document.getElementById("minutes").innerHTML = getTallyHTML(minutes);
+    document.getElementById("seconds").innerHTML = getTallyHTML(seconds);
+}
+
+// Atualiza a cada segundo
+setInterval(updateCountdown, 1000);
+
+// Chamada inicial
+updateCountdown();
+    </script>
+</body>
+</html>

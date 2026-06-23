@@ -1,4 +1,4 @@
-import AudicaoFlow from './components/AudicaoFlow';
+import AudicaoFlow from '../components/AudicaoFlow';
 
 export default function Home() {
   return (

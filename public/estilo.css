@@ -1,0 +1,175 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #111;
+    color: #fff;
+    overflow: hidden; /* Evitar scroll, focando na imagem */
+}
+
+/* Container principal */
+.main-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-image: url('fundo-boteco.jpg');
+    background-size: contain; /* Contain tira o zoom, mostrando a foto inteira, mas pode deixar barras pretas laterais */
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: #000;
+}
+
+/* Fundo esmaecido leve para dar destaque à garrafa e texto */
+.main-container::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.2); /* Deixei mais claro pra ver bem o boteco */
+    z-index: 1;
+}
+
+/* Para a animação da máscara circular estilo pizza funcionar no CSS moderno */
+@property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
+/* Bolacha Wrapper: Posicionado centralizado, acima da mesa */
+.bolacha-wrapper {
+    position: absolute;
+    bottom: 25%; /* Fica um pouco acima do cronômetro, de acordo com o seu print */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+/* A Imagem da Bolacha (redonda com animação de pizza) */
+.bolacha-image {
+    width: 115%; /* Dá um leve zoom para tentar cortar as bordas brancas do JPG */
+    height: 115%;
+    border-radius: 50%; 
+    object-fit: cover;
+    z-index: 2;
+    mix-blend-mode: darken; /* Tenta deixar o fundo branco transparente */
+    
+    /* Efeito de carregamento "Pizza" ficando transparente */
+    -webkit-mask-image: conic-gradient(rgba(0,0,0,1) var(--angle), rgba(0,0,0,0.1) var(--angle));
+    mask-image: conic-gradient(rgba(0,0,0,1) var(--angle), rgba(0,0,0,0.1) var(--angle));
+    animation: sweep 2s linear infinite;
+}
+
+/* Esconde qualquer sobra que passar do anel */
+.loading-ring-container {
+    position: relative;
+    width: 250px; 
+    height: 250px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Força o corte redondo mesmo com o zoom da imagem */
+}
+
+@keyframes sweep {
+    0% { --angle: 0deg; }
+    100% { --angle: 360deg; }
+}
+
+
+/* Cronômetro (Centro em baixo da garrafa, literalmente em cima da mesa de sinuca) */
+.center-bottom {
+    position: absolute;
+    bottom: 3%; /* Bem na beirada inferior da mesa */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 15;
+    width: 90%;
+    max-width: 700px;
+}
+
+/* Quadro do cronômetro direto na janela */
+.countdown-container {
+    background: rgba(17, 17, 17, 0.7); /* Fundo semi-transparente para dar destaque */
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 15px; 
+    padding: 15px 30px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    width: 100%;
+}
+
+#countdown {
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+}
+
+.time-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1; /* Para distribuir o espaço */
+}
+
+/* Números em estilo Giz Rústico (Palitinhos de boteco) */
+.time-value {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: center;
+    width: 100%;
+    height: 70px;
+    overflow: hidden; 
+    
+    color: #f4f4f4; /* Giz branco */
+    background: transparent;
+    border-bottom: 2px dashed rgba(255,255,255,0.2); /* Linha sutil de anotação */
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.time-box small {
+    margin-top: 5px;
+    font-family: 'Caveat', cursive;
+    font-size: 1.4rem;
+    color: #dcdcdc;
+    text-transform: capitalize;
+}
+
+.launch-date {
+    margin-top: 15px;
+    font-family: 'Amatic SC', cursive;
+    font-size: 2.8rem;
+    font-weight: bold;
+    color: #f4f4f4;
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.5);
+}
+
+/* Responsividade Mínima Opcional */
+@media (max-width: 768px) {
+    .bottle {
+        transform: scale(0.8);
+    }
+    .center-bottom {
+        bottom: 5%;
+        width: 95%;
+    }
+    .time-value {
+        height: 60px;
+    }
+    .launch-date {
+        font-size: 2.2rem;
+    }
+}
