@@ -14,9 +14,18 @@ RUN npm install
 COPY prisma ./prisma/
 RUN npx prisma generate
 
-# Exigir a URL do banco durante o build
+# Exigir variáveis durante o build para o Next.js não crachar
 ARG DATABASE_URL
 ENV DATABASE_URL=$DATABASE_URL
+
+ARG NEXTAUTH_SECRET
+ENV NEXTAUTH_SECRET=$NEXTAUTH_SECRET
+
+ARG NEXTAUTH_URL
+ENV NEXTAUTH_URL=$NEXTAUTH_URL
+
+ARG RESEND_API_KEY
+ENV RESEND_API_KEY=$RESEND_API_KEY
 
 # Copiar todo o resto do projeto
 COPY . .
