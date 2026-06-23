@@ -18,15 +18,15 @@ const trackNames = [
 ];
 
 const audioFiles = [
-  "1. INTRO (MASTER).wav",
-  "2. SABOR MC (MASTER).wav",
-  "3. THIAGO, TIAGO (MASTER).wav",
-  "4. SER OU NÃO SER (MASTER).wav",
-  "5. CORPOS VAZIOS (MASTER).wav",
-  "6. PELAS RUAS (MASTER).wav",
-  "7. BOOMBAP KING (MASTER).wav",
-  "8. LIXOS (MASTER).wav",
-  "9. 20 MIL MOTIVOS (MASTER).wav"
+  "1.mp3",
+  "2.mp3",
+  "3.mp3",
+  "4.mp3",
+  "5.mp3",
+  "6.mp3",
+  "7.mp3",
+  "8.mp3",
+  "9.mp3"
 ];
 
 export default function AudicaoFlow() {
