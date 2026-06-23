@@ -64,7 +64,7 @@ const handler = NextAuth({
     },
   },
   pages: {
-    signIn: "/login",
+    signIn: "/poesiadeboteco/login",
   },
   secret: process.env.NEXTAUTH_SECRET,
 });
