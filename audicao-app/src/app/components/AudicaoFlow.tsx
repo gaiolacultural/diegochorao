@@ -99,7 +99,7 @@ export default function AudicaoFlow() {
       <div 
         className="absolute inset-0 z-0 bg-cover bg-center transition-all duration-1000"
         style={{ 
-          backgroundImage: "url('/FUNDO.jpg')",
+          backgroundImage: "url('/poesiadeboteco/FUNDO.jpg')",
           filter: "sepia(0.4) contrast(1.1) brightness(0.6) saturate(1.2)" 
         }}
       />
@@ -112,7 +112,7 @@ export default function AudicaoFlow() {
             
             <audio 
               ref={audioRef} 
-              src={`/${audioFiles[currentIndex]}`} 
+              src={`/poesiadeboteco/${audioFiles[currentIndex]}`} 
               onTimeUpdate={handleTimeUpdate}
               onEnded={handleNext}
               onPlay={() => setIsPlaying(true)}
@@ -137,9 +137,9 @@ export default function AudicaoFlow() {
               >
                 {/* Imagem Horizontal do Cardápio - Agora fluida sem travar o aspect ratio */}
                 <img 
-                  src={`/${currentIndex + 1}.png`} 
+                  src={`/poesiadeboteco/${currentIndex + 1}.png`} 
                   alt={`Faixa ${currentIndex + 1}`} 
-                  className="w-full h-auto pointer-events-none drop-shadow-2xl"
+                  className="w-[85%] mx-auto h-auto pointer-events-none drop-shadow-2xl"
                 />
 
                 {/* Bolacha travada nos parâmetros fornecidos */}
@@ -147,11 +147,12 @@ export default function AudicaoFlow() {
                   className="absolute cursor-pointer hover:scale-105 transition-transform z-20 flex items-center justify-center"
                   style={{ 
                     top: `46%`, 
-                    left: `9%`, 
-                    width: `20%`,
+                    left: `15%`, 
+                    width: `18%`,
                     aspectRatio: '1/1'
                   }}
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.stopPropagation();
                     if (audioRef.current) {
                       if (audioRef.current.paused) audioRef.current.play();
                       else audioRef.current.pause();
@@ -160,7 +161,7 @@ export default function AudicaoFlow() {
                   title="Tocar Música"
                 >
                   {/* Removido o rounded-full e alterado para object-contain para não cortar o P e o O */}
-                  <img src="/bolacha-marrom.png" className="absolute inset-0 w-full h-full object-contain opacity-80 drop-shadow-lg" alt="Bolacha base" />
+                  <img src="/poesiadeboteco/bolacha-marrom.png" className="absolute inset-0 w-full h-full object-contain opacity-80 drop-shadow-lg" alt="Bolacha base" />
                   
                   <div 
                     className="absolute inset-0 w-full h-full overflow-hidden"
@@ -169,7 +170,7 @@ export default function AudicaoFlow() {
                       WebkitMaskImage: `conic-gradient(black ${pizzaDegrees}deg, transparent ${pizzaDegrees}deg)`
                     }}
                   >
-                    <img src="/bolacha-marrom.png" className="w-full h-full object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]" alt="Bolacha preenchida" />
+                    <img src="/poesiadeboteco/bolacha-marrom.png" className="w-full h-full object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]" alt="Bolacha preenchida" />
                   </div>
 
                   {/* Ícone de Play/Pause ao passar o mouse (visível por padrão na primeira música se pausada) */}
@@ -224,7 +225,7 @@ export default function AudicaoFlow() {
           >
             {/* Imagem FINAL de fundo */}
             <img 
-              src="/FINAL.png" 
+              src="/poesiadeboteco/FINAL.png" 
               alt="Ranking Final" 
               className="w-full h-auto pointer-events-none drop-shadow-2xl"
             />
