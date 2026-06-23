@@ -14,6 +14,10 @@ RUN npm install
 COPY prisma ./prisma/
 RUN npx prisma generate
 
+# Exigir a URL do banco durante o build
+ARG DATABASE_URL
+ENV DATABASE_URL=$DATABASE_URL
+
 # Copiar todo o resto do projeto
 COPY . .
 
