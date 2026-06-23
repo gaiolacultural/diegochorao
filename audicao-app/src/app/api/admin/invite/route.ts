@@ -2,13 +2,12 @@ import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 import { getServerSession } from "next-auth/next";
 import bcrypt from "bcryptjs";
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 import { authOptions } from "../../../api/auth/[...nextauth]/route";
 
 const prisma = new PrismaClient();
 
 export async function POST(req: Request) {
-  const resend = new Resend(process.env.RESEND_API_KEY);
   try {
     const session = await getServerSession(authOptions);
 
@@ -43,11 +42,19 @@ export async function POST(req: Request) {
       },
     });
 
-    // Send email via Resend
+    // Send email via Nodemailer
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    });
+
     const loginUrl = "https://diegochorao.gaiolarecords.com.br/poesiadeboteco/login";
     
-    await resend.emails.send({
-      from: "Audição Diego Chorão <audicao@gaiolarecords.com.br>", // We need to make sure this domain is verified in Resend or use Resend's testing domain
+    await transporter.sendMail({
+      from: `"Audição Diego Chorão" <${process.env.SMTP_USER}>`,
       to: email,
       subject: "Seu Acesso Exclusivo à Audição",
       html: `
