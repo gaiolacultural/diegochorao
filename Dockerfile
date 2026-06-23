@@ -39,5 +39,5 @@ EXPOSE 3000
 ENV PORT 3000
 ENV HOSTNAME "0.0.0.0"
 
-# Iniciar o servidor de produção do Next.js
-CMD ["npm", "start"]
+# Iniciar o servidor de produção do Next.js, mantendo o container vivo em caso de falha
+CMD ["/bin/sh", "-c", "npm start || tail -f /dev/null"]
