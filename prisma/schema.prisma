@@ -1,0 +1,85 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String?
+  name      String?
+  isAdmin   Boolean  @default(false)
+  createdAt DateTime @default(now())
+  
+  comments  Comment[]
+  likes     Like[]
+  rankings  Ranking[]
+}
+
+model Track {
+  id          String   @id @default(cuid())
+  order       Int      @unique
+  title       String
+  story       String
+  beatmaker   String
+  artists     String
+  audioUrl    String?
+  imageUrl    String?
+  
+  comments    Comment[]
+  likes       Like[]
+  rankItems   RankingItem[]
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  content   String
+  createdAt DateTime @default(now())
+  
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  trackId   String
+  track     Track    @relation(fields: [trackId], references: [id], onDelete: Cascade)
+}
+
+model Like {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  trackId   String
+  track     Track    @relation(fields: [trackId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, trackId])
+}
+
+model Ranking {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  items     RankingItem[]
+}
+
+model RankingItem {
+  id        String   @id @default(cuid())
+  position  Int      // 1 to 9
+  
+  rankingId String
+  ranking   Ranking  @relation(fields: [rankingId], references: [id], onDelete: Cascade)
+  
+  trackId   String
+  track     Track    @relation(fields: [trackId], references: [id], onDelete: Cascade)
+  
+  @@unique([rankingId, position])
+  @@unique([rankingId, trackId])
+}
