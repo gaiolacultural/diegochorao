@@ -7,7 +7,7 @@ export default async function Home() {
   const session = await getServerSession(authOptions);
 
   if (!session) {
-    redirect("/login"); // When using basePath, redirecting to /login is automatically treated as /poesiadeboteco/login by Next.js app router
+    redirect("/poesiadeboteco/login"); 
   }
 
   return (

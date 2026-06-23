@@ -64,8 +64,8 @@ export const authOptions = {
     },
   },
   pages: {
-    signIn: "/login", // Next.js handles basePath internally for these NextAuth paths in newer versions, or we can use absolute path
-    error: "/login",
+    signIn: "/poesiadeboteco/login",
+    error: "/poesiadeboteco/login",
   },
   secret: process.env.NEXTAUTH_SECRET,
 };
