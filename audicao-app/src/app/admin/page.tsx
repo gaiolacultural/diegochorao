@@ -20,7 +20,7 @@ export default function AdminPage() {
       <div className="p-8 text-white text-center">
         <h1 className="text-2xl text-red-500 font-bold mb-4">Acesso Negado</h1>
         <p>Você não tem permissão para acessar esta página.</p>
-        <button onClick={() => router.push("/poesiadeboteco")} className="mt-4 text-emerald-400 underline">Voltar para o site</button>
+        <button onClick={() => router.push("/")} className="mt-4 text-emerald-400 underline">Voltar para o site</button>
       </div>
     );
   }
