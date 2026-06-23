@@ -26,5 +26,5 @@ EXPOSE 3000
 ENV PORT 3000
 ENV HOSTNAME "0.0.0.0"
 
-# Iniciar o servidor de produção do Next.js
-CMD ["npm", "start"]
+# Iniciar o servidor de produção do Next.js rodando o Prisma DB Push antes
+CMD ["/bin/sh", "-c", "npx prisma db push && npm start"]
