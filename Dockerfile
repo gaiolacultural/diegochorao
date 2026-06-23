@@ -39,5 +39,5 @@ EXPOSE 3000
 ENV PORT 3000
 ENV HOSTNAME "0.0.0.0"
 
-# Manter o container vivo temporariamente para podermos rodar npm start manualmente e ver o erro
-CMD ["sleep", "infinity"]
+# Iniciar o servidor de produção do Next.js
+CMD ["npm", "start"]
