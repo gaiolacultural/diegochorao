@@ -26,7 +26,7 @@ export default function LoginPage() {
       setError("Credenciais inválidas. Verifique seu e-mail e senha.");
       setLoading(false);
     } else {
-      router.push("/");
+      router.push("/poesiadeboteco");
       router.refresh();
     }
   };
