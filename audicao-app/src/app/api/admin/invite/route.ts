@@ -3,13 +3,14 @@ import { PrismaClient } from "@prisma/client";
 import { getServerSession } from "next-auth/next";
 import bcrypt from "bcryptjs";
 import { Resend } from "resend";
+import { authOptions } from "../../../api/auth/[...nextauth]/route";
 
 const prisma = new PrismaClient();
 
 export async function POST(req: Request) {
   const resend = new Resend(process.env.RESEND_API_KEY);
   try {
-    const session = await getServerSession();
+    const session = await getServerSession(authOptions);
 
     // Check if user is logged in and is admin
     if (!session?.user || !(session.user as any).isAdmin) {
