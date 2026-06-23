@@ -158,7 +158,7 @@ export default function AudicaoFlow() {
                     </div>
                   </div>
 
-                  {/* Botão invisível "Próxima Rodada" no canto inferior direito */}
+                  {/* Botão "Próxima Rodada" */}
                   <div 
                     className="absolute bottom-[8%] right-[5%] w-[35%] h-[15%] cursor-pointer z-30 rounded-lg hover:bg-white/20 transition-colors flex items-center justify-center"
                     onClick={(e) => {
@@ -167,10 +167,12 @@ export default function AudicaoFlow() {
                     }}
                     title="Próxima Rodada"
                   >
-                    <span className="text-white/30 text-xs font-bold pointer-events-none opacity-0 hover:opacity-100">CLIQUE AQUI</span>
+                    <span className="text-white/80 text-xs md:text-sm font-black tracking-widest pointer-events-none drop-shadow-md">
+                      PRÓXIMA &rarr;
+                    </span>
                   </div>
 
-                  {/* Botão invisível para "Voltar" (lado inferior esquerdo da tela) */}
+                  {/* Botão para "Voltar" */}
                   {currentIndex > 0 && (
                     <div 
                       className="absolute bottom-[8%] left-[45%] w-[20%] h-[15%] cursor-pointer z-30 rounded-lg hover:bg-white/20 transition-colors flex items-center justify-center"
@@ -180,7 +182,9 @@ export default function AudicaoFlow() {
                       }}
                       title="Voltar"
                     >
-                      <span className="text-white/30 text-xs font-bold pointer-events-none opacity-0 hover:opacity-100">VOLTAR</span>
+                      <span className="text-white/80 text-xs md:text-sm font-black tracking-widest pointer-events-none drop-shadow-md">
+                        &larr; VOLTAR
+                      </span>
                     </div>
                   )}
                 </div>
