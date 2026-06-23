@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 export default function AdminPage() {
   const { data: session, status } = useSession();
   const [email, setEmail] = useState("");
+  const [nome, setNome] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState({ type: "", text: "" });
   const router = useRouter();
@@ -33,7 +34,7 @@ export default function AdminPage() {
       const res = await fetch("/poesiadeboteco/api/admin/invite", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, nome }),
       });
 
       const data = await res.json();
@@ -42,8 +43,9 @@ export default function AdminPage() {
         throw new Error(data.error || "Erro ao convidar usuário");
       }
 
-      setMessage({ type: "success", text: `Convite enviado com sucesso para ${email}!` });
+      setMessage({ type: "success", text: `Convite enviado com sucesso para ${nome} (${email})!` });
       setEmail("");
+      setNome("");
     } catch (err: any) {
       setMessage({ type: "error", text: err.message });
     } finally {
@@ -58,7 +60,7 @@ export default function AdminPage() {
           Painel de Convites
         </h1>
         <p className="text-zinc-400 mb-8">
-          Adicione um e-mail abaixo para gerar uma senha aleatória e enviar o acesso à audição.
+          Adicione o nome e e-mail abaixo. Será gerada a senha no formato "nome2706" e um e-mail de convite será enviado.
         </p>
 
         {message.text && (
@@ -68,6 +70,20 @@ export default function AdminPage() {
         )}
 
         <form onSubmit={handleInvite} className="space-y-6">
+          <div>
+            <label className="block text-sm font-medium text-zinc-400 mb-2">
+              Nome do Convidado (Ex: Lucas)
+            </label>
+            <input
+              type="text"
+              required
+              value={nome}
+              onChange={(e) => setNome(e.target.value)}
+              className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              placeholder="Lucas"
+            />
+          </div>
+
           <div>
             <label className="block text-sm font-medium text-zinc-400 mb-2">
               E-mail do Convidado

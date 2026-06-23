@@ -16,10 +16,10 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Não autorizado" }, { status: 401 });
     }
 
-    const { email } = await req.json();
+    const { email, nome } = await req.json();
 
-    if (!email) {
-      return NextResponse.json({ error: "E-mail é obrigatório" }, { status: 400 });
+    if (!email || !nome) {
+      return NextResponse.json({ error: "Nome e e-mail são obrigatórios" }, { status: 400 });
     }
 
     // Check if user already exists
@@ -28,9 +28,10 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Usuário já existe" }, { status: 400 });
     }
 
-    // Generate random password (8 characters)
-    const randomPassword = Math.random().toString(36).slice(-8);
-    const hashedPassword = await bcrypt.hash(randomPassword, 10);
+    // Generate custom password: nome sem espaços minúsculo + 2706
+    const cleanName = nome.toLowerCase().replace(/\s+/g, "");
+    const generatedPassword = `${cleanName}2706`;
+    const hashedPassword = await bcrypt.hash(generatedPassword, 10);
 
     // Create user in DB
     await prisma.user.create({
@@ -50,12 +51,12 @@ export async function POST(req: Request) {
       subject: "Seu Acesso Exclusivo à Audição",
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; background-color: #111; color: #fff; padding: 40px; border-radius: 10px;">
-          <h1 style="color: #10b981; text-align: center;">Bem-vindo à Audição!</h1>
+          <h1 style="color: #10b981; text-align: center;">Bem-vindo à Audição, ${nome}!</h1>
           <p style="font-size: 16px; color: #ccc;">Você foi convidado para ouvir com exclusividade o novo projeto do Diego Chorão.</p>
           <div style="background-color: #222; padding: 20px; border-radius: 8px; margin: 30px 0;">
             <p style="margin: 0 0 10px 0; color: #888;">Seus dados de acesso:</p>
             <p style="margin: 5px 0;"><strong>E-mail:</strong> ${email}</p>
-            <p style="margin: 5px 0;"><strong>Senha:</strong> <span style="color: #10b981; font-size: 18px;">${randomPassword}</span></p>
+            <p style="margin: 5px 0;"><strong>Senha:</strong> <span style="color: #10b981; font-size: 18px;">${generatedPassword}</span></p>
           </div>
           <div style="text-align: center; margin-top: 30px;">
             <a href="${loginUrl}" style="background-color: #10b981; color: #fff; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">Acessar Agora</a>
