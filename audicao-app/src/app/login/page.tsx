@@ -3,6 +3,7 @@
 import { signIn } from "next-auth/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -32,58 +33,56 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-zinc-950 text-white p-4">
-      <div className="max-w-md w-full bg-zinc-900 border border-zinc-800 rounded-xl p-8 shadow-2xl">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold tracking-tight text-white mb-2">
-            Acesso Restrito
-          </h1>
-          <p className="text-zinc-400">
-            Digite seu e-mail e a senha que você recebeu para ouvir a audição.
-          </p>
-        </div>
+    <div className="min-h-screen w-full flex items-center justify-center bg-zinc-900 p-4">
+      {/* Container responsivo que mantém a proporção da imagem */}
+      <div className="relative w-full max-w-4xl mx-auto shadow-2xl rounded-2xl overflow-hidden">
+        
+        {/* Imagem de Fundo (usando tag img normal para herdar proporção) */}
+        <img 
+          src="/poesiadeboteco/login-bg.png" 
+          alt="Login Poesia de Boteco" 
+          className="w-full h-auto block select-none pointer-events-none"
+        />
 
-        {error && (
-          <div className="bg-red-500/10 border border-red-500/50 text-red-400 p-3 rounded-lg mb-6 text-sm text-center">
-            {error}
-          </div>
-        )}
+        {/* Formulário Overlay */}
+        <form onSubmit={handleSubmit} className="absolute inset-0 w-full h-full">
+          
+          {error && (
+            <div className="absolute top-[30%] left-1/2 -translate-x-1/2 w-[80%] bg-red-500/90 text-white p-2 rounded text-center font-bold text-sm sm:text-base z-10 shadow-lg">
+              {error}
+            </div>
+          )}
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label className="block text-sm font-medium text-zinc-400 mb-2">
-              E-mail
-            </label>
-            <input
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
-              placeholder="seu@email.com"
-            />
-          </div>
+          {/* Campo Email - Posicionado sobre o espaço "EMAIL:" na imagem */}
+          <input
+            type="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="absolute top-[49%] left-[32%] w-[58%] h-[8%] bg-transparent border-b-2 border-transparent hover:border-black/30 focus:border-black/50 text-black/80 font-bold text-sm sm:text-lg md:text-xl px-2 focus:outline-none transition-colors"
+            placeholder=""
+          />
 
-          <div>
-            <label className="block text-sm font-medium text-zinc-400 mb-2">
-              Senha
-            </label>
-            <input
-              type="password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
-              placeholder="••••••••"
-            />
-          </div>
+          {/* Campo Senha - Posicionado sobre o espaço "SENHA:" na imagem */}
+          <input
+            type="password"
+            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="absolute top-[67%] left-[32%] w-[58%] h-[8%] bg-transparent border-b-2 border-transparent hover:border-black/30 focus:border-black/50 text-black/80 font-bold text-sm sm:text-lg md:text-xl px-2 focus:outline-none transition-colors"
+            placeholder=""
+          />
 
+          {/* Botão Entrar Invisível - Posicionado sobre a área vermelha "ENTRAR" */}
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-medium py-3 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-zinc-900 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="absolute top-[80%] left-[40%] w-[20%] h-[12%] bg-transparent hover:bg-black/10 active:bg-black/20 rounded-full cursor-pointer transition-colors focus:outline-none flex items-center justify-center disabled:opacity-50"
+            aria-label="Acessar Audição"
           >
-            {loading ? "Entrando..." : "Acessar Audição"}
+            {loading && (
+              <div className="w-6 h-6 border-4 border-white/50 border-t-white rounded-full animate-spin"></div>
+            )}
           </button>
         </form>
       </div>
