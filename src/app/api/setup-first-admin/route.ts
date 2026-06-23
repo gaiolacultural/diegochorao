@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
 
-const prisma = new PrismaClient({ datasources: { db: { url: process.env.DATABASE_URL } } });
+const prisma = new PrismaClient();
 
 export async function GET(req: Request) {
   try {
