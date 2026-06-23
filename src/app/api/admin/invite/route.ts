@@ -4,7 +4,7 @@ import { getServerSession } from "next-auth/next";
 import bcrypt from "bcryptjs";
 import { Resend } from "resend";
 
-const prisma = new PrismaClient({ datasourceUrl: process.env.DATABASE_URL });
+const prisma = new PrismaClient({ datasources: { db: { url: process.env.DATABASE_URL } } });
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
