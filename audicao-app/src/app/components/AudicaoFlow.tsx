@@ -201,31 +201,22 @@ export default function AudicaoFlow() {
                 className="w-full h-auto pointer-events-none drop-shadow-2xl"
               />
 
-              {/* Lista Centralizada para Seleção Única */}
-              <div className="absolute top-[35%] left-0 right-0 h-[55%] flex flex-col items-center justify-start overflow-y-auto px-4">
-                <p className="text-[#1a110b] font-black text-sm md:text-lg uppercase mb-4 opacity-80 text-center">
-                  Qual você mais gostou?
-                </p>
-                
-                <div className="w-full max-w-[80%] flex flex-col gap-2">
-                  {trackNames.map((name) => (
-                    <div
-                      key={name}
-                      onClick={() => setRanking([{ id: name, name, originalIndex: 0 }])} // Usando o estado existente para armazenar a seleção
-                      className={`
-                        w-full py-2 px-4 rounded-lg cursor-pointer transition-all border-2
-                        ${ranking.length > 0 && ranking[0].id === name 
-                          ? 'bg-[#1a110b] text-white border-[#1a110b] scale-105 shadow-xl' 
-                          : 'bg-white/40 text-[#1a110b] border-transparent hover:bg-white/60'
-                        }
-                      `}
-                    >
-                      <span className="font-black text-[14px] md:text-[16px] uppercase tracking-tighter w-full text-center block">
-                        {name}
-                      </span>
-                    </div>
-                  ))}
-                </div>
+              {/* Hitboxes invisíveis para Seleção Única (sobre a imagem) */}
+              <div className="absolute top-[18%] left-[10%] right-[10%] bottom-[22%] flex flex-col z-20">
+                {trackNames.filter(name => name !== "INTRO").map((name, index) => (
+                  <div
+                    key={name}
+                    onClick={() => setRanking([{ id: name, name, originalIndex: index }])}
+                    className={`
+                      w-full flex-1 rounded-lg cursor-pointer transition-all border-2
+                      ${ranking.length > 0 && ranking[0].id === name 
+                        ? 'bg-white/20 border-white/60 shadow-lg scale-105' 
+                        : 'bg-transparent border-transparent hover:bg-white/10 hover:border-white/30'
+                      }
+                    `}
+                    title={`Votar em ${name}`}
+                  />
+                ))}
               </div>
 
               {/* Botão Enviar/Salvar */}
