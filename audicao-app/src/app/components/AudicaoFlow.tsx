@@ -202,7 +202,7 @@ export default function AudicaoFlow() {
               />
 
               {/* Hitboxes invisíveis para Seleção Única (sobre a imagem) */}
-              <div className="absolute top-[42%] left-[10%] right-[10%] bottom-[15%] flex flex-col z-20 gap-1">
+              <div className="absolute top-[45%] left-[10%] right-[10%] bottom-[12%] flex flex-col z-20 gap-1">
                 {trackNames.map((name, index) => (
                   <div
                     key={name}
