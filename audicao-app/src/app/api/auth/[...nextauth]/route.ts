@@ -46,14 +46,7 @@ export const authOptions = {
       if (user) {
         token.id = user.id;
         token.isAdmin = (user as any).isAdmin;
-        token.sessionVersion = 1; // Marca a nova sessão
       }
-      
-      // Invalida a sessão antiga se não tiver a versão 1
-      if (token.sessionVersion !== 1) {
-        return {};
-      }
-
       return token;
     },
     async session({ session, token }: any) {
@@ -68,7 +61,7 @@ export const authOptions = {
     signIn: "/poesiadeboteco/login",
     error: "/poesiadeboteco/login",
   },
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: process.env.NEXTAUTH_SECRET + "_reset1",
 };
 
 const handler = NextAuth(authOptions);
