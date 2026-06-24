@@ -133,7 +133,7 @@ export default function AudicaoFlow() {
                     }}
                     title="Tocar Música"
                   >
-                    <img src="/poesiadeboteco/bolacha-marrom.png" className="absolute inset-0 w-full h-full object-contain opacity-80 drop-shadow-lg" alt="Bolacha base" />
+                    <img src="/poesiadeboteco/bolacha-marrom.png" className="absolute inset-0 w-full h-full object-contain opacity-40 drop-shadow-lg" alt="Bolacha base" />
                     
                     <div 
                       className="absolute inset-0 w-full h-full overflow-hidden"
