@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { PrismaClient } from "@prisma/client";
 import { authOptions } from "../../api/auth/[...nextauth]/route";
 import Link from "next/link";
+import DeleteUserButton from "../../components/DeleteUserButton";
 
 const prisma = new PrismaClient();
 
@@ -95,6 +96,7 @@ export default async function AdminRelatorioPage() {
                   <th className="p-4 border-b border-zinc-800">Último Acesso</th>
                   <th className="p-4 border-b border-zinc-800 text-center">Progresso Máx.</th>
                   <th className="p-4 border-b border-zinc-800">Voto (Preferida)</th>
+                  <th className="p-4 border-b border-zinc-800 text-center">Ações</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-zinc-800">
@@ -118,6 +120,9 @@ export default async function AdminRelatorioPage() {
                       ) : (
                         <span className="text-zinc-600 italic">Não votou</span>
                       )}
+                    </td>
+                    <td className="p-4 text-center">
+                      <DeleteUserButton userId={user.id} email={user.email} />
                     </td>
                   </tr>
                 ))}
