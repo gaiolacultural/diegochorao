@@ -107,7 +107,7 @@ export default function AudicaoFlow() {
                 }}
                 className="relative w-full cursor-grab active:cursor-grabbing bg-transparent"
               >
-                <div className="relative w-[70%] mx-auto">
+                <div className={`relative mx-auto ${currentIndex === 0 ? 'w-[70%] md:w-[70%]' : 'w-[95%] sm:w-[85%] md:w-[70%]'}`}>
                   {/* Imagem Horizontal do Cardápio - Agora fluida sem travar o aspect ratio */}
                   <img 
                     src={`/poesiadeboteco/${currentIndex + 1}.png?v=2`} 
