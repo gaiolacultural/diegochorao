@@ -233,9 +233,22 @@ export default function AudicaoFlow() {
                 className={`absolute bottom-[3.5%] right-[5%] w-[35%] h-[15%] cursor-pointer z-30 flex items-center justify-center transition-all duration-300
                   ${ranking.length > 0 ? 'opacity-100 hover:scale-105' : 'opacity-50 grayscale cursor-not-allowed'}
                 `}
-                onClick={() => {
+                onClick={async () => {
                   if (ranking.length > 0) {
-                    alert(`Você escolheu: ${ranking[0].name}! (Integração com backend pendente)`);
+                    try {
+                      const res = await fetch("/api/vote", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ trackName: ranking[0].name })
+                      });
+                      if (res.ok) {
+                        alert("Voto registrado com sucesso! Obrigado por participar da audição.");
+                      } else {
+                        alert("Erro ao registrar voto. Tente novamente.");
+                      }
+                    } catch (e) {
+                      alert("Erro na conexão. Verifique sua internet.");
+                    }
                   }
                 }}
                 title="Salvar Escolha"

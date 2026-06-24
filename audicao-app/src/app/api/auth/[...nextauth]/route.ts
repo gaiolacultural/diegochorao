@@ -11,10 +11,9 @@ export const authOptions = {
       name: "Credentials",
       credentials: {
         email: { label: "Email", type: "email" },
-        password: { label: "Senha", type: "password" },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) {
+        if (!credentials?.email) {
           return null;
         }
 
@@ -22,18 +21,15 @@ export const authOptions = {
           where: { email: credentials.email },
         });
 
-        if (!user || !user.password) {
+        if (!user) {
           return null;
         }
 
-        const isPasswordValid = await bcrypt.compare(
-          credentials.password,
-          user.password
-        );
-
-        if (!isPasswordValid) {
-          return null;
-        }
+        // Update lastLoginAt
+        await prisma.user.update({
+          where: { id: user.id },
+          data: { lastLoginAt: new Date() },
+        });
 
         return {
           id: user.id,

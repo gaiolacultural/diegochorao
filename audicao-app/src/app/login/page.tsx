@@ -7,7 +7,6 @@ import Image from "next/image";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -19,12 +18,11 @@ export default function LoginPage() {
 
     const res = await signIn("credentials", {
       email,
-      password,
       redirect: false,
     });
 
     if (res?.error) {
-      setError("Credenciais inválidas. Verifique seu e-mail e senha.");
+      setError("Email não encontrado. Verifique se foi digitado corretamente.");
       setLoading(false);
     } else {
       router.push("/");
@@ -76,16 +74,7 @@ export default function LoginPage() {
             placeholder=""
           />
 
-          {/* Campo Senha - Posicionado sobre o espaço "SENHA:" na imagem */}
-          <input
-            type="password"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="absolute top-[67.5%] sm:top-[68%] left-[32%] w-[58%] h-[8%] bg-transparent border-b-2 border-transparent hover:border-black/30 focus:border-black/50 text-black/80 font-bold text-[15px] sm:text-base md:text-lg px-2 focus:outline-none transition-colors"
-            placeholder=""
-          />
-
+          {/* Campo Senha Removido conforme solicitado */}
           {/* Botão Entrar Invisível */}
           <button
             type="submit"
