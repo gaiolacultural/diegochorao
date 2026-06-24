@@ -228,7 +228,7 @@ export default function AudicaoFlow() {
                   e.stopPropagation();
                   if (ranking.length > 0) {
                     try {
-                      const res = await fetch("/api/vote", {
+                      const res = await fetch("/poesiadeboteco/api/vote", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({ trackName: ranking[0].name })
