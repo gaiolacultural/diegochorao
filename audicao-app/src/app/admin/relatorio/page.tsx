@@ -10,7 +10,7 @@ export default async function AdminRelatorioPage() {
   const session = await getServerSession(authOptions);
 
   if (!session || !session.user || !(session.user as any).isAdmin) {
-    redirect("/poesiadeboteco/login");
+    redirect("/login");
   }
 
   const users = await prisma.user.findMany({

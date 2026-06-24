@@ -58,8 +58,8 @@ export const authOptions = {
     },
   },
   pages: {
-    signIn: "/poesiadeboteco/login",
-    error: "/poesiadeboteco/login",
+    signIn: "/login",
+    error: "/login",
   },
   secret: process.env.NEXTAUTH_SECRET + "_reset1",
 };
