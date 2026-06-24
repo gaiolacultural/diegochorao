@@ -46,7 +46,14 @@ export const authOptions = {
       if (user) {
         token.id = user.id;
         token.isAdmin = (user as any).isAdmin;
+        token.sessionVersion = 1; // Marca a nova sessão
       }
+      
+      // Invalida a sessão antiga se não tiver a versão 1
+      if (token.sessionVersion !== 1) {
+        return {};
+      }
+
       return token;
     },
     async session({ session, token }: any) {
