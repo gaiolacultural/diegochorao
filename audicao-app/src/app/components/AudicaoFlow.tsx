@@ -110,7 +110,7 @@ export default function AudicaoFlow() {
                 <div className="relative w-[70%] mx-auto">
                   {/* Imagem Horizontal do Cardápio - Agora fluida sem travar o aspect ratio */}
                   <img 
-                    src={`/poesiadeboteco/${currentIndex + 1}.png`} 
+                    src={`/poesiadeboteco/${currentIndex + 1}.png?v=2`} 
                     alt={`Faixa ${currentIndex + 1}`} 
                     className="w-full h-auto pointer-events-none drop-shadow-2xl"
                   />
@@ -202,7 +202,7 @@ export default function AudicaoFlow() {
             {/* Imagem FINAL de fundo - O usuário vai trocar essa arte depois */}
             <div className="relative w-[70%] mx-auto">
               <img 
-                src="/poesiadeboteco/FINAL.png" 
+                src="/poesiadeboteco/FINAL.png?v=2" 
                 alt="Ranking Final" 
                 className="w-full h-auto pointer-events-none drop-shadow-2xl"
               />
