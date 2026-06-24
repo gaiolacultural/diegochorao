@@ -221,10 +221,11 @@ export default function AudicaoFlow() {
 
               {/* Botão Enviar/Salvar */}
               <div 
-                className={`absolute bottom-[3.5%] right-[5%] w-[35%] h-[15%] cursor-pointer z-30 flex items-center justify-center transition-all duration-300
-                  ${ranking.length > 0 ? 'opacity-100 hover:scale-105' : 'opacity-50 grayscale cursor-not-allowed'}
+                className={`absolute bottom-[8%] right-[5%] w-[35%] h-[15%] cursor-pointer z-30 rounded-lg hover:bg-white/10 flex items-center justify-center transition-all duration-300
+                  ${ranking.length > 0 ? 'opacity-100 hover:scale-105' : 'opacity-50 cursor-not-allowed'}
                 `}
-                onClick={async () => {
+                onClick={async (e) => {
+                  e.stopPropagation();
                   if (ranking.length > 0) {
                     try {
                       const res = await fetch("/api/vote", {
@@ -237,41 +238,24 @@ export default function AudicaoFlow() {
                       } else {
                         alert("Erro ao registrar voto. Tente novamente.");
                       }
-                    } catch (e) {
+                    } catch (err) {
                       alert("Erro na conexão. Verifique sua internet.");
                     }
                   }
                 }}
                 title="Salvar Escolha"
               >
-                 <span 
-                   className="font-black uppercase tracking-tighter"
-                   style={{ 
-                     fontSize: `16px`, 
-                     color: `rgb(140, 55, 20)`,
-                     textShadow: "0px 2px 4px rgba(0,0,0,0.3)" 
-                   }}
-                 >
-                   ENVIAR
-                 </span>
               </div>
 
               {/* Hitbox para voltar */}
               <div 
-                className="absolute bottom-[3.5%] left-[45%] w-[20%] h-[15%] cursor-pointer z-30 flex items-center justify-center hover:scale-105 transition-transform"
-                onClick={handlePrev}
+                className="absolute bottom-[8%] left-[45%] w-[20%] h-[15%] cursor-pointer z-30 rounded-lg hover:bg-white/10 flex items-center justify-center transition-colors"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handlePrev();
+                }}
                 title="Voltar"
               >
-                 <span 
-                   className="font-black uppercase tracking-tighter"
-                   style={{ 
-                     fontSize: `16px`, 
-                     color: `rgb(140, 55, 20)`,
-                     textShadow: "0px 2px 4px rgba(0,0,0,0.3)"
-                   }}
-                 >
-                   VOLTAR
-                 </span>
               </div>
             </div>
 
