@@ -20,12 +20,7 @@ export const authOptions = {
         let user = allUsers.find(u => u.email.trim().toLowerCase() === credentials.email.trim().toLowerCase());
 
         if (!user) {
-          // Se o usuário não existir, cria ele automaticamente na hora
-          user = await prisma.user.create({
-            data: {
-              email: credentials.email.toLowerCase().trim(),
-            },
-          });
+          return null;
         }
 
         // Update lastLoginAt
