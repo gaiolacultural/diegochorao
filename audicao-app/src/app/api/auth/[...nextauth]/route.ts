@@ -17,14 +17,8 @@ export const authOptions = {
           return null;
         }
 
-        const user = await prisma.user.findFirst({
-          where: { 
-            email: {
-              equals: credentials.email,
-              mode: "insensitive"
-            }
-          },
-        });
+        const allUsers = await prisma.user.findMany();
+        const user = allUsers.find(u => u.email.toLowerCase() === credentials.email.toLowerCase());
 
         if (!user) {
           return null;
