@@ -28,16 +28,11 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Usuário já existe" }, { status: 400 });
     }
 
-    // Generate custom password: nome sem espaços minúsculo + 2706
-    const cleanName = nome.toLowerCase().replace(/\s+/g, "");
-    const generatedPassword = `${cleanName}2706`;
-    const hashedPassword = await bcrypt.hash(generatedPassword, 10);
-
     // Create user in DB
     await prisma.user.create({
       data: {
         email,
-        password: hashedPassword,
+        name: nome,
         isAdmin: false,
       },
     });
@@ -52,23 +47,20 @@ export async function POST(req: Request) {
     });
 
     const loginUrl = "https://diegochorao.gaiolarecords.com.br/poesiadeboteco/login";
+    // O ideal é a imagem estar hospedada no servidor para aparecer no email. 
+    // Assumimos que a imagem será acessível neste link após o deploy:
+    const imageUrl = "https://diegochorao.gaiolarecords.com.br/poesiadeboteco/EMAIL.png";
     
     await transporter.sendMail({
       from: `"Audição Diego Chorão" <${process.env.SMTP_USER}>`,
       to: email,
       subject: "Seu Acesso Exclusivo à Audição",
       html: `
-        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; background-color: #111; color: #fff; padding: 40px; border-radius: 10px;">
-          <h1 style="color: #10b981; text-align: center;">Bem-vindo à Audição, ${nome}!</h1>
-          <p style="font-size: 16px; color: #ccc;">Você foi convidado para ouvir com exclusividade o novo projeto do Diego Chorão.</p>
-          <div style="background-color: #222; padding: 20px; border-radius: 8px; margin: 30px 0;">
-            <p style="margin: 0 0 10px 0; color: #888;">Seus dados de acesso:</p>
-            <p style="margin: 5px 0;"><strong>E-mail:</strong> ${email}</p>
-            <p style="margin: 5px 0;"><strong>Senha:</strong> <span style="color: #10b981; font-size: 18px;">${generatedPassword}</span></p>
-          </div>
-          <div style="text-align: center; margin-top: 30px;">
-            <a href="${loginUrl}" style="background-color: #10b981; color: #fff; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">Acessar Agora</a>
-          </div>
+        <div style="text-align: center; background-color: #000; padding: 20px;">
+          <!-- Envolvemos a imagem inteira com o link, assim se a pessoa clicar em qualquer lugar da imagem (incluindo o botão desenhado nela), ela vai pro login -->
+          <a href="${loginUrl}" target="_blank" style="text-decoration: none;">
+            <img src="${imageUrl}" alt="Convite Audição Diego Chorão" style="max-width: 600px; width: 100%; height: auto; border: none; display: block; margin: 0 auto;" />
+          </a>
         </div>
       `,
     });
