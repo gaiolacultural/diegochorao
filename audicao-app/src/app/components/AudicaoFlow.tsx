@@ -110,7 +110,7 @@ export default function AudicaoFlow() {
                 <div className="relative mx-auto w-[95%] sm:w-[85%] md:w-[85%]">
                   {/* Imagem Horizontal do Cardápio - Agora fluida sem travar o aspect ratio */}
                   <img 
-                    src={`/poesiadeboteco/0${currentIndex + 1}.png?v=4`} 
+                    src={`/poesiadeboteco/0${currentIndex + 1}.png?v=5`} 
                     alt={`Faixa ${currentIndex + 1}`} 
                     className="w-full h-auto pointer-events-none drop-shadow-2xl"
                   />
