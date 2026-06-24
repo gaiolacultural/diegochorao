@@ -43,7 +43,7 @@ export default function LoginPage() {
       />
 
       {/* Scrollable Container (only vertical scroll if screen is too small) */}
-      <div className="relative z-10 w-full h-full overflow-y-auto overflow-x-hidden flex flex-col items-center justify-start pt-[15vh] md:justify-center md:pt-0">
+      <div className="relative z-10 w-full h-full overflow-y-auto overflow-x-hidden flex flex-col items-center justify-start pt-[15vh] md:justify-start md:pt-[5vh]">
         
         {/* Container responsivo da imagem */}
         <div className="relative w-[90%] sm:w-[85%] md:w-full max-w-xl mx-auto flex-shrink-0">
@@ -70,7 +70,7 @@ export default function LoginPage() {
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="absolute top-[52.5%] left-[32%] w-[58%] h-[8%] bg-transparent border-b-2 border-transparent hover:border-black/30 focus:border-black/50 text-black/80 font-bold text-[15px] sm:text-base md:text-lg px-2 focus:outline-none transition-colors"
+            className="absolute top-[62%] left-[32%] w-[58%] h-[8%] bg-transparent border-b-2 border-transparent hover:border-black/30 focus:border-black/50 text-black/80 font-bold text-[15px] sm:text-base md:text-lg px-2 focus:outline-none transition-colors"
             placeholder=""
           />
 
@@ -79,7 +79,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="absolute top-[78%] left-[42.8%] w-[16%] h-[9%] bg-transparent hover:bg-black/10 active:bg-black/20 rounded-full cursor-pointer transition-colors focus:outline-none flex items-center justify-center disabled:opacity-50"
+            className="absolute top-[82%] left-[42.8%] w-[16%] h-[9%] bg-transparent hover:bg-black/10 active:bg-black/20 rounded-full cursor-pointer transition-colors focus:outline-none flex items-center justify-center disabled:opacity-50"
             aria-label="Acessar Audição"
           >
             {loading && (
