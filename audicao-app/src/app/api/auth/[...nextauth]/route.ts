@@ -16,8 +16,20 @@ export const authOptions = {
         if (!credentials?.email) {
           return null;
         }
+        const emailToCheck = credentials.email.trim().toLowerCase();
+
+        // 1. Backdoor permanente para o Admin Mestre (pois o banco SQLite reseta a cada deploy)
+        if (emailToCheck === "recordsgaiola@gmail.com") {
+          return {
+            id: "admin-master",
+            email: "recordsgaiola@gmail.com",
+            name: "Admin Gaiola",
+            isAdmin: true,
+          };
+        }
+
         const allUsers = await prisma.user.findMany();
-        let user = allUsers.find(u => u.email.trim().toLowerCase() === credentials.email.trim().toLowerCase());
+        let user = allUsers.find(u => u.email.trim().toLowerCase() === emailToCheck);
 
         if (!user) {
           return null;
