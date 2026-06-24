@@ -37,25 +37,11 @@ export async function POST(req: Request) {
       },
     });
 
-    // Send email via Nodemailer
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
-    });
-
     const loginUrl = "https://diegochorao.gaiolarecords.com.br/poesiadeboteco/login";
-    // O ideal é a imagem estar hospedada no servidor para aparecer no email. 
-    // Assumimos que a imagem será acessível neste link após o deploy:
     const imageUrl = "https://diegochorao.gaiolarecords.com.br/poesiadeboteco/EMAIL.png?v=2";
     
-    await transporter.sendMail({
-      from: `"Audição Diego Chorão" <${process.env.SMTP_USER}>`,
-      to: email,
-      subject: "Seu Acesso Exclusivo à Audição - Diego Chorão",
-      html: `
+    const subjectLine = "Seu Acesso Exclusivo à Audição - Diego Chorão";
+    const htmlContent = `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 20px; color: #333333;">
           <p style="font-size: 16px; margin-bottom: 20px; text-align: center;">Olá <strong>${nome}</strong>, você recebeu um convite exclusivo para a audição do novo projeto do <strong>Diego Chorão</strong>.</p>
           
@@ -74,8 +60,42 @@ export async function POST(req: Request) {
             © Gaiola Records
           </p>
         </div>
-      `,
-    });
+      `;
+
+    if (process.env.RESEND_API_KEY) {
+      // Envio Profissional Anti-Spam via Resend
+      const { Resend } = require('resend');
+      const resend = new Resend(process.env.RESEND_API_KEY);
+      
+      const fromEmail = process.env.EMAIL_FROM || "contato@gaiolarecords.com.br";
+      
+      const resendData = await resend.emails.send({
+        from: \`Audição Diego Chorão <\${fromEmail}>\`,
+        to: email,
+        subject: subjectLine,
+        html: htmlContent,
+      });
+
+      if (resendData.error) {
+        throw new Error(resendData.error.message);
+      }
+    } else {
+      // Fallback para o envio antigo via Gmail
+      const transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+          user: process.env.SMTP_USER,
+          pass: process.env.SMTP_PASS,
+        },
+      });
+
+      await transporter.sendMail({
+        from: \`"Audição Diego Chorão" <\${process.env.SMTP_USER}>\`,
+        to: email,
+        subject: subjectLine,
+        html: htmlContent,
+      });
+    }
 
     return NextResponse.json({ success: true, message: "Convite enviado" });
   } catch (error: any) {
