@@ -160,31 +160,25 @@ export default function AudicaoFlow() {
 
                   {/* Botão "Próxima Rodada" */}
                   <div 
-                    className="absolute bottom-[8%] right-[5%] w-[35%] h-[15%] cursor-pointer z-30 rounded-lg hover:bg-white/20 transition-colors flex items-center justify-center"
+                    className="absolute bottom-[8%] right-[5%] w-[35%] h-[15%] cursor-pointer z-30 rounded-lg hover:bg-white/10 transition-colors flex items-center justify-center"
                     onClick={(e) => {
                       e.stopPropagation();
                       handleNext();
                     }}
                     title="Próxima Rodada"
                   >
-                    <span className="text-white/80 text-xs md:text-sm font-black tracking-widest pointer-events-none drop-shadow-md">
-                      PRÓXIMA &rarr;
-                    </span>
                   </div>
 
                   {/* Botão para "Voltar" */}
                   {currentIndex > 0 && (
                     <div 
-                      className="absolute bottom-[8%] left-[45%] w-[20%] h-[15%] cursor-pointer z-30 rounded-lg hover:bg-white/20 transition-colors flex items-center justify-center"
+                      className="absolute bottom-[8%] left-[45%] w-[20%] h-[15%] cursor-pointer z-30 rounded-lg hover:bg-white/10 transition-colors flex items-center justify-center"
                       onClick={(e) => {
                         e.stopPropagation();
                         handlePrev();
                       }}
                       title="Voltar"
                     >
-                      <span className="text-white/80 text-xs md:text-sm font-black tracking-widest pointer-events-none drop-shadow-md">
-                        &larr; VOLTAR
-                      </span>
                     </div>
                   )}
                 </div>
