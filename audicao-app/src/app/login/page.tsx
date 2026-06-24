@@ -46,7 +46,7 @@ export default function LoginPage() {
       <div className="relative z-10 w-full h-full overflow-y-auto overflow-x-hidden flex flex-col items-center justify-start pt-[15vh] md:justify-start md:pt-[5vh]">
         
         {/* Container responsivo da imagem */}
-        <div className="relative w-[90%] sm:w-[85%] md:w-full max-w-xl mx-auto flex-shrink-0">
+        <div className="relative w-full sm:w-[85%] md:w-full max-w-xl mx-auto flex-shrink-0">
         
         {/* Imagem de Fundo (usando tag img normal para herdar proporção) */}
         <img 
