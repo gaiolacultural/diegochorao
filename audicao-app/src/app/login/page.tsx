@@ -33,7 +33,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="relative min-h-screen w-full flex items-start pt-16 md:pt-4 md:items-center justify-center bg-black p-4 font-sans overflow-hidden">
+    <div className="fixed inset-0 flex items-start pt-16 md:pt-0 md:items-center justify-center bg-black p-4 font-sans overflow-hidden w-full h-[100dvh]">
       
       {/* Background (Wood texture matching the app) */}
       <div 
