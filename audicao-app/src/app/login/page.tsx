@@ -70,7 +70,7 @@ export default function LoginPage() {
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="absolute top-[62%] left-[32%] w-[58%] h-[8%] bg-transparent border-b-2 border-transparent hover:border-black/30 focus:border-black/50 text-black/80 font-bold text-[15px] sm:text-base md:text-lg px-2 focus:outline-none transition-colors"
+            className="absolute top-[62%] left-[32%] w-[58%] h-[8%] bg-transparent border-b-2 border-transparent hover:border-black/30 focus:border-black/50 text-black/80 font-bold text-[13px] sm:text-sm md:text-base px-2 focus:outline-none transition-colors"
             placeholder=""
           />
 
@@ -79,7 +79,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="absolute top-[82%] left-[42.8%] w-[16%] h-[9%] bg-transparent hover:bg-black/10 active:bg-black/20 rounded-full cursor-pointer transition-colors focus:outline-none flex items-center justify-center disabled:opacity-50"
+            className="absolute top-[80%] left-[42.8%] w-[16%] h-[9%] bg-transparent hover:bg-black/10 active:bg-black/20 rounded-full cursor-pointer transition-colors focus:outline-none flex items-center justify-center disabled:opacity-50"
             aria-label="Acessar Audição"
           >
             {loading && (
