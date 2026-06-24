@@ -56,9 +56,14 @@ export default function AdminPage() {
   return (
     <div className="min-h-screen bg-zinc-950 text-white p-8">
       <div className="max-w-2xl mx-auto bg-zinc-900 border border-zinc-800 rounded-xl p-8 shadow-2xl">
-        <h1 className="text-3xl font-bold tracking-tight text-white mb-2">
-          Painel de Convites
-        </h1>
+        <div className="flex justify-between items-center mb-2">
+          <h1 className="text-3xl font-bold tracking-tight text-white">
+            Painel de Convites
+          </h1>
+          <a href="/poesiadeboteco/admin/relatorio" className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2 px-4 rounded-lg transition-colors">
+            Ver Votos e Relatório
+          </a>
+        </div>
         <p className="text-zinc-400 mb-8">
           Adicione o nome e e-mail abaixo. Um e-mail de convite será enviado (agora sem senha, pois o acesso é só com o e-mail).
         </p>
