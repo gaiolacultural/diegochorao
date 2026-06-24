@@ -37,13 +37,21 @@ export default function AudicaoFlow() {
   // Ranking Final state - inicialmente vazio
   const [ranking, setRanking] = useState<{id: string, name: string, originalIndex: number}[]>([]);
 
-  // Control Audio
+  // Control Audio & Rastrear Progresso
   useEffect(() => {
     if (currentIndex < 9 && audioRef.current) {
       setProgress(0);
       audioRef.current.load();
       audioRef.current.play().catch(() => console.log('Autoplay prevented'));
     }
+
+    // Salvar o progresso no banco de dados sem travar a tela
+    fetch("/poesiadeboteco/api/progress", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ trackIndex: currentIndex })
+    }).catch(err => console.log("Erro ao salvar progresso:", err));
+    
   }, [currentIndex]);
 
   const handleTimeUpdate = () => {

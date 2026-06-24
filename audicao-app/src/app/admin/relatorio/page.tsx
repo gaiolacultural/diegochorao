@@ -93,6 +93,7 @@ export default async function AdminRelatorioPage() {
                   <th className="p-4 border-b border-zinc-800">Nome</th>
                   <th className="p-4 border-b border-zinc-800">E-mail</th>
                   <th className="p-4 border-b border-zinc-800">Último Acesso</th>
+                  <th className="p-4 border-b border-zinc-800 text-center">Progresso Máx.</th>
                   <th className="p-4 border-b border-zinc-800">Voto (Preferida)</th>
                 </tr>
               </thead>
@@ -105,6 +106,9 @@ export default async function AdminRelatorioPage() {
                       {user.lastLoginAt 
                         ? new Intl.DateTimeFormat('pt-BR', { dateStyle: 'short', timeStyle: 'short' }).format(user.lastLoginAt)
                         : "Nunca acessou"}
+                    </td>
+                    <td className="p-4 text-center font-bold text-zinc-300">
+                      {user.maxTrackIndex === 9 ? "Chegou no Voto" : `${user.maxTrackIndex + 1}/9`}
                     </td>
                     <td className="p-4">
                       {user.votes.length > 0 ? (
