@@ -16,12 +16,16 @@ export const authOptions = {
         if (!credentials?.email) {
           return null;
         }
-
         const allUsers = await prisma.user.findMany();
-        const user = allUsers.find(u => u.email.toLowerCase() === credentials.email.toLowerCase());
+        let user = allUsers.find(u => u.email.trim().toLowerCase() === credentials.email.trim().toLowerCase());
 
         if (!user) {
-          return null;
+          // Se o usuário não existir, cria ele automaticamente na hora
+          user = await prisma.user.create({
+            data: {
+              email: credentials.email.toLowerCase().trim(),
+            },
+          });
         }
 
         // Update lastLoginAt
