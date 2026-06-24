@@ -33,7 +33,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="fixed inset-0 flex items-start pt-16 md:pt-0 md:items-center justify-center bg-black p-4 font-sans overflow-hidden w-full h-[100dvh]">
+    <div className="fixed inset-0 flex items-center justify-center bg-black font-sans overflow-hidden w-screen h-[100dvh]">
       
       {/* Background (Wood texture matching the app) */}
       <div 
@@ -45,7 +45,7 @@ export default function LoginPage() {
       />
 
       {/* Container responsivo que mantém a proporção da imagem */}
-      <div className="relative z-10 w-full max-w-4xl mx-auto shadow-2xl rounded-2xl overflow-hidden mt-8 md:mt-0">
+      <div className="relative z-10 w-[90%] max-w-2xl mx-auto shadow-2xl rounded-2xl overflow-hidden">
         
         {/* Imagem de Fundo (usando tag img normal para herdar proporção) */}
         <img 
