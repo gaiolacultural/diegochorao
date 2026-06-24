@@ -133,7 +133,7 @@ export default function AudicaoFlow() {
                     }}
                     title="Tocar Música"
                   >
-                    <img src="/poesiadeboteco/bolacha-marrom.png" className="absolute inset-0 w-full h-full object-contain opacity-20 drop-shadow-lg" alt="Bolacha base" />
+                    <img src="/poesiadeboteco/bolacha-marrom.png" className="absolute inset-0 w-full h-full object-contain opacity-10 drop-shadow-lg" alt="Bolacha base" />
                     
                     <div 
                       className="absolute inset-0 w-full h-full overflow-hidden"
@@ -202,7 +202,7 @@ export default function AudicaoFlow() {
               />
 
               {/* Hitboxes invisíveis para Seleção Única (sobre a imagem) */}
-              <div className="absolute top-[18%] left-[10%] right-[10%] bottom-[22%] flex flex-col z-20">
+              <div className="absolute top-[35%] left-[10%] right-[10%] bottom-[32%] flex flex-col z-20 gap-1">
                 {trackNames.filter(name => name !== "INTRO").map((name, index) => (
                   <div
                     key={name}
