@@ -54,13 +54,25 @@ export async function POST(req: Request) {
     await transporter.sendMail({
       from: `"Audição Diego Chorão" <${process.env.SMTP_USER}>`,
       to: email,
-      subject: "Seu Acesso Exclusivo à Audição",
+      subject: "Seu Acesso Exclusivo à Audição - Diego Chorão",
       html: `
-        <div style="text-align: center; background-color: #ffffff; padding: 20px;">
-          <!-- Envolvemos a imagem inteira com o link, assim se a pessoa clicar em qualquer lugar da imagem (incluindo o botão desenhado nela), ela vai pro login -->
-          <a href="${loginUrl}" target="_blank" style="text-decoration: none;">
-            <img src="${imageUrl}" alt="Convite Audição Diego Chorão" style="max-width: 600px; width: 100%; height: auto; border: none; display: block; margin: 0 auto;" />
-          </a>
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 20px; color: #333333;">
+          <p style="font-size: 16px; margin-bottom: 20px; text-align: center;">Olá <strong>${nome}</strong>, você recebeu um convite exclusivo para a audição do novo projeto do <strong>Diego Chorão</strong>.</p>
+          
+          <div style="text-align: center;">
+            <a href="${loginUrl}" target="_blank" style="text-decoration: none;">
+              <img src="${imageUrl}" alt="Convite Audição Diego Chorão" style="width: 100%; height: auto; border: none; display: block; margin: 0 auto;" />
+            </a>
+          </div>
+
+          <p style="font-size: 14px; margin-top: 30px; text-align: center; color: #666666;">
+            Se o botão na imagem não funcionar, acesse diretamente por este link:<br>
+            <a href="${loginUrl}" style="color: #000000;">${loginUrl}</a>
+          </p>
+          <p style="font-size: 12px; margin-top: 20px; text-align: center; color: #999999;">
+            Por favor, utilize o seu e-mail cadastrado (${email}) para fazer o acesso.<br>
+            © Gaiola Records
+          </p>
         </div>
       `,
     });
