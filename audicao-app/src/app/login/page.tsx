@@ -33,7 +33,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="relative min-h-screen w-full flex items-center justify-center bg-black p-4 font-sans overflow-hidden">
+    <div className="relative min-h-screen w-full flex items-start pt-16 md:pt-4 md:items-center justify-center bg-black p-4 font-sans overflow-hidden">
       
       {/* Background (Wood texture matching the app) */}
       <div 
@@ -45,7 +45,7 @@ export default function LoginPage() {
       />
 
       {/* Container responsivo que mantém a proporção da imagem */}
-      <div className="relative z-10 w-full max-w-4xl mx-auto shadow-2xl rounded-2xl overflow-hidden">
+      <div className="relative z-10 w-full max-w-4xl mx-auto shadow-2xl rounded-2xl overflow-hidden mt-8 md:mt-0">
         
         {/* Imagem de Fundo (usando tag img normal para herdar proporção) */}
         <img 
@@ -83,11 +83,12 @@ export default function LoginPage() {
             placeholder=""
           />
 
-          {/* Botão Entrar Invisível - Posicionado sobre a área vermelha "ENTRAR" */}
+          {/* Botão Entrar Invisível - Posicionado sobre a área vermelha "ENTRAR" 
+              Aumentamos a área clicável (hitbox) para cobrir o botão inteiro independentemente do celular */}
           <button
             type="submit"
             disabled={loading}
-            className="absolute top-[80%] left-[40%] w-[20%] h-[12%] bg-transparent hover:bg-black/10 active:bg-black/20 rounded-full cursor-pointer transition-colors focus:outline-none flex items-center justify-center disabled:opacity-50"
+            className="absolute top-[80%] left-[35%] w-[30%] h-[15%] bg-transparent hover:bg-black/10 active:bg-black/20 rounded-full cursor-pointer transition-colors focus:outline-none flex items-center justify-center disabled:opacity-50"
             aria-label="Acessar Audição"
           >
             {loading && (
