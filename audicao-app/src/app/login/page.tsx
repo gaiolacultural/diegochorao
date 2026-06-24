@@ -72,7 +72,7 @@ export default function LoginPage() {
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="absolute top-[49%] left-[32%] w-[58%] h-[8%] bg-transparent border-b-2 border-transparent hover:border-black/30 focus:border-black/50 text-black/80 font-bold text-sm sm:text-lg md:text-xl px-2 focus:outline-none transition-colors"
+            className="absolute top-[49%] left-[32%] w-[58%] h-[8%] bg-transparent border-b-2 border-transparent hover:border-black/30 focus:border-black/50 text-black/80 font-bold text-base sm:text-lg md:text-xl px-2 focus:outline-none transition-colors"
             placeholder=""
           />
 
@@ -82,12 +82,11 @@ export default function LoginPage() {
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="absolute top-[67%] left-[32%] w-[58%] h-[8%] bg-transparent border-b-2 border-transparent hover:border-black/30 focus:border-black/50 text-black/80 font-bold text-sm sm:text-lg md:text-xl px-2 focus:outline-none transition-colors"
+            className="absolute top-[67%] left-[32%] w-[58%] h-[8%] bg-transparent border-b-2 border-transparent hover:border-black/30 focus:border-black/50 text-black/80 font-bold text-base sm:text-lg md:text-xl px-2 focus:outline-none transition-colors"
             placeholder=""
           />
 
-          {/* Botão Entrar Invisível - Posicionado sobre a área vermelha "ENTRAR" 
-              Aumentamos a área clicável (hitbox) para cobrir o botão inteiro independentemente do celular */}
+          {/* Botão Entrar Invisível */}
           <button
             type="submit"
             disabled={loading}
@@ -101,5 +100,6 @@ export default function LoginPage() {
         </form>
       </div>
     </div>
+  </div>
   );
 }
