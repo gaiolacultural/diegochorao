@@ -234,7 +234,8 @@ export default function AudicaoFlow() {
                         body: JSON.stringify({ trackName: ranking[0].name })
                       });
                       if (res.ok) {
-                        alert("Voto registrado com sucesso! Obrigado por participar da audição.");
+                        alert("VOTO ENVIADO COM SUCESSO!");
+                        window.location.href = "https://diegochorao.gaiolarecords.com.br";
                       } else {
                         alert("Erro ao registrar voto. Tente novamente.");
                       }
