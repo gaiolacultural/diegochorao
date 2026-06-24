@@ -49,14 +49,14 @@ export async function POST(req: Request) {
     const loginUrl = "https://diegochorao.gaiolarecords.com.br/poesiadeboteco/login";
     // O ideal é a imagem estar hospedada no servidor para aparecer no email. 
     // Assumimos que a imagem será acessível neste link após o deploy:
-    const imageUrl = "https://diegochorao.gaiolarecords.com.br/poesiadeboteco/EMAIL.png";
+    const imageUrl = "https://diegochorao.gaiolarecords.com.br/poesiadeboteco/EMAIL.png?v=2";
     
     await transporter.sendMail({
       from: `"Audição Diego Chorão" <${process.env.SMTP_USER}>`,
       to: email,
       subject: "Seu Acesso Exclusivo à Audição",
       html: `
-        <div style="text-align: center; background-color: #000; padding: 20px;">
+        <div style="text-align: center; background-color: #ffffff; padding: 20px;">
           <!-- Envolvemos a imagem inteira com o link, assim se a pessoa clicar em qualquer lugar da imagem (incluindo o botão desenhado nela), ela vai pro login -->
           <a href="${loginUrl}" target="_blank" style="text-decoration: none;">
             <img src="${imageUrl}" alt="Convite Audição Diego Chorão" style="max-width: 600px; width: 100%; height: auto; border: none; display: block; margin: 0 auto;" />
