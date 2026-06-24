@@ -50,7 +50,7 @@ export default function LoginPage() {
         
         {/* Imagem de Fundo (usando tag img normal para herdar proporção) */}
         <img 
-          src="/poesiadeboteco/INTRO.png" 
+          src="/poesiadeboteco/INTRO.png?v=3" 
           alt="Login Poesia de Boteco" 
           className="w-full h-auto block select-none pointer-events-none"
         />
