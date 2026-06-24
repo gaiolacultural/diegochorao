@@ -10,17 +10,53 @@ export default function AdminPage() {
   const [nome, setNome] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState({ type: "", text: "" });
+  const [adminEmail, setAdminEmail] = useState("");
+  const [adminPassword, setAdminPassword] = useState("");
+  const [loginError, setLoginError] = useState("");
+  const [loginLoading, setLoginLoading] = useState(false);
   const router = useRouter();
 
   if (status === "loading") return <div className="p-8 text-white">Carregando...</div>;
 
   // Simple check. Real protection is done in the API and layout/middleware if needed
   if (!session?.user || !(session.user as any).isAdmin) {
+    const handleAdminLogin = async (e: React.FormEvent) => {
+      e.preventDefault();
+      setLoginError("");
+      setLoginLoading(true);
+      const res = await signIn("credentials", {
+        email: adminEmail,
+        password: adminPassword,
+        redirect: false,
+      });
+      if (res?.error) {
+        setLoginError("E-mail ou senha incorretos.");
+      }
+      setLoginLoading(false);
+    };
+
     return (
-      <div className="p-8 text-white text-center">
-        <h1 className="text-2xl text-red-500 font-bold mb-4">Acesso Negado</h1>
-        <p>Você não tem permissão para acessar esta página.</p>
-        <button onClick={() => router.push("/")} className="mt-4 text-emerald-400 underline">Voltar para o site</button>
+      <div className="min-h-screen flex items-center justify-center bg-zinc-950 text-white p-8">
+        <div className="max-w-md w-full bg-zinc-900 border border-zinc-800 rounded-xl p-8 shadow-2xl">
+          <h1 className="text-2xl font-bold text-center mb-6 text-white">Acesso Restrito</h1>
+          {loginError && <p className="text-red-500 text-sm mb-4 text-center font-bold">{loginError}</p>}
+          <form onSubmit={handleAdminLogin} className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-zinc-400 mb-2">E-mail Administrativo</label>
+              <input type="email" required value={adminEmail} onChange={e => setAdminEmail(e.target.value)} className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500" placeholder="admin@email.com" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-zinc-400 mb-2">Senha</label>
+              <input type="password" required value={adminPassword} onChange={e => setAdminPassword(e.target.value)} className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500" placeholder="••••••••" />
+            </div>
+            <button type="submit" disabled={loginLoading} className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-lg transition-colors disabled:opacity-50">
+              {loginLoading ? "Entrando..." : "Acessar Painel"}
+            </button>
+          </form>
+          <div className="mt-6 text-center">
+            <button onClick={() => router.push("/")} className="text-sm text-zinc-500 hover:text-emerald-400 underline transition-colors">Voltar para o site normal</button>
+          </div>
+        </div>
       </div>
     );
   }
