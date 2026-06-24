@@ -107,7 +107,7 @@ export default function AudicaoFlow() {
                 }}
                 className="relative w-full cursor-grab active:cursor-grabbing bg-transparent"
               >
-                <div className="relative mx-auto w-full sm:w-[85%] md:w-[85%]">
+                <div className="relative mx-auto w-[120%] sm:w-[85%] md:w-[85%] max-w-none">
                   {/* Imagem Horizontal do Cardápio - Agora fluida sem travar o aspect ratio */}
                   <img 
                     src={`/poesiadeboteco/${currentIndex + 1}.png?v=2`} 
@@ -194,7 +194,7 @@ export default function AudicaoFlow() {
             className="relative flex flex-col items-center w-[95%] max-w-xl md:max-w-2xl"
           >
             {/* Imagem FINAL de fundo - O usuário vai trocar essa arte depois */}
-            <div className="relative w-full sm:w-[85%] md:w-[85%] mx-auto">
+            <div className="relative w-[120%] sm:w-[85%] md:w-[85%] max-w-none mx-auto">
               <img 
                 src="/poesiadeboteco/FINAL.png?v=2" 
                 alt="Ranking Final" 
