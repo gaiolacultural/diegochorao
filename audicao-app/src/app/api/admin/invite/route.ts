@@ -70,7 +70,7 @@ export async function POST(req: Request) {
       const fromEmail = process.env.EMAIL_FROM || "contato@gaiolarecords.com.br";
       
       const resendData = await resend.emails.send({
-        from: `Audição Diego Chorão <${fromEmail}>`,
+        from: `Poesia de Boteco <${fromEmail}>`,
         to: email,
         subject: subjectLine,
         html: htmlContent,
@@ -90,7 +90,7 @@ export async function POST(req: Request) {
       });
 
       await transporter.sendMail({
-        from: `"Audição Diego Chorão" <${process.env.SMTP_USER}>`,
+        from: `"Poesia de Boteco" <${process.env.SMTP_USER}>`,
         to: email,
         subject: subjectLine,
         html: htmlContent,
