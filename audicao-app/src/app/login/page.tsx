@@ -79,7 +79,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="absolute top-[79%] left-[42.8%] w-[16%] h-[9%] bg-transparent hover:bg-black/10 active:bg-black/20 rounded-full cursor-pointer transition-colors focus:outline-none flex items-center justify-center disabled:opacity-50"
+            className="absolute top-[79.5%] left-[42.8%] w-[16%] h-[9%] bg-transparent hover:bg-black/10 active:bg-black/20 rounded-full cursor-pointer transition-colors focus:outline-none flex items-center justify-center disabled:opacity-50"
             aria-label="Acessar Audição"
           >
             {loading && (
