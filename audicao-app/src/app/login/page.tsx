@@ -33,9 +33,19 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-zinc-900 p-4">
+    <div className="relative min-h-screen w-full flex items-center justify-center bg-black p-4 font-sans overflow-hidden">
+      
+      {/* Background (Wood texture matching the app) */}
+      <div 
+        className="absolute inset-0 z-0 bg-cover bg-center transition-all duration-1000"
+        style={{ 
+          backgroundImage: "url('/poesiadeboteco/FUNDO.jpg')",
+          filter: "sepia(0.4) contrast(1.1) brightness(0.6) saturate(1.2)" 
+        }}
+      />
+
       {/* Container responsivo que mantém a proporção da imagem */}
-      <div className="relative w-full max-w-4xl mx-auto shadow-2xl rounded-2xl overflow-hidden">
+      <div className="relative z-10 w-full max-w-4xl mx-auto shadow-2xl rounded-2xl overflow-hidden">
         
         {/* Imagem de Fundo (usando tag img normal para herdar proporção) */}
         <img 
