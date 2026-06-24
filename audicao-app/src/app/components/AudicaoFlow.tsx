@@ -202,8 +202,8 @@ export default function AudicaoFlow() {
               />
 
               {/* Hitboxes invisíveis para Seleção Única (sobre a imagem) */}
-              <div className="absolute top-[35%] left-[10%] right-[10%] bottom-[32%] flex flex-col z-20 gap-1">
-                {trackNames.filter(name => name !== "INTRO").map((name, index) => (
+              <div className="absolute top-[42%] left-[10%] right-[10%] bottom-[15%] flex flex-col z-20 gap-1">
+                {trackNames.map((name, index) => (
                   <div
                     key={name}
                     onClick={() => setRanking([{ id: name, name, originalIndex: index }])}
