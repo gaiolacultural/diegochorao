@@ -11,6 +11,7 @@ export const authOptions = {
       name: "Credentials",
       credentials: {
         email: { label: "Email", type: "email" },
+        fromPreSave: { label: "fromPreSave", type: "text" }
       },
       async authorize(credentials) {
         if (!credentials?.email) {
@@ -32,7 +33,17 @@ export const authOptions = {
         let user = allUsers.find(u => u.email.trim().toLowerCase() === emailToCheck);
 
         if (!user) {
-          return null;
+          if (credentials.fromPreSave === "true") {
+            // Cria o usuário automaticamente se vier do link de pré-save
+            user = await prisma.user.create({
+              data: {
+                email: emailToCheck,
+                name: "Ouvinte Pre-Save"
+              }
+            });
+          } else {
+            return null;
+          }
         }
 
         // Update lastLoginAt
