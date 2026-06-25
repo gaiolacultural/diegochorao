@@ -9,6 +9,6 @@ export default withAuth({
 export const config = {
   // Protege todas as rotas da aplicação, exceto as imagens e api/auth
   matcher: [
-    "/((?!login|api|_next/static|_next/image|favicon.ico).*)",
+    "/((?!login|presave|api|_next/static|_next/image|favicon.ico).*)",
   ],
 };
